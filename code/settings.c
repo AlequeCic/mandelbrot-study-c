@@ -16,8 +16,8 @@
 #define OUTPUT_BIN "output_binaries"
 
 //file names
-#define MY_ESCAPE_FILE_NAME "bah"
-#define TEACHER_ESCAPE_FILE_NAME "guri"
+#define MY_ESCAPE_FILE_NAME "serial_3_multi_output"
+#define TEACHER_ESCAPE_FILE_NAME "serial_output"
 
 
 //general functions

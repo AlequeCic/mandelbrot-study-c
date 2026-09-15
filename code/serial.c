@@ -47,18 +47,19 @@ void calc_escape_time(int16_t* array){
         for (px=0; px < MAX_COLUMNS; px++){
             pos_x = X_MIN + (px*x_step_size); // the same as above, actual position in the plane
 
-            z_real = 0; z_imaginary = 0;
+            z_real = pos_x; z_imaginary = pos_y, z_distance=0;
 
             //calculate if it is on the set
             for(i=0;i<MAX_ITER;i++){
-                //to calc if it escapes we need |zn|, as it is a complex number
-                z_distance = z_real*z_real + z_imaginary*z_imaginary;
+                
+                
                 //zn = zr + zi;
-                double temp_z_real = z_real;
-                temp_z_real = z_real*z_real - (z_imaginary * z_imaginary) + pos_x;
+                double temp_z_real = z_real*z_real - (z_imaginary * z_imaginary) + pos_x;
                 z_imaginary = pos_y + 2*z_real*z_imaginary; 
                 z_real = temp_z_real;
-                
+
+                //to calc if it escapes we need |zn|, as it is a complex number
+                z_distance = z_real*z_real + z_imaginary*z_imaginary;
                 if (z_distance > 4.0) break;
             }
             array[MAX_ROWS*py + px] = i; // the matrix is declared as row major
@@ -70,7 +71,8 @@ void calc_escape_time(int16_t* array){
 }
 
 void calc_escape_time_3_multi(int16_t* array){
-    double pos_x, pos_y, z_real=0, z_imaginary=0, z_new = 0, z_distance; //complex position of the "pixel"
+    double pos_x, pos_y, z_real=0, z_imaginary=0; //complex position of the "pixel"
+    double z_2_real=0, z_2_imaginary = 0, z_ri = 0;
     int px,py, i; //actual pixel position (in image)
        
     double x_step_size = (X_MAX - X_MIN)/MAX_COLUMNS;
@@ -82,21 +84,19 @@ void calc_escape_time_3_multi(int16_t* array){
         for (px=0; px < MAX_COLUMNS; px++){
             pos_x = X_MIN + (px*x_step_size); // the same as above, actual position in the plane
 
-            z_real = 0; z_imaginary = 0, z_distance = 0;
-            double z_2_real=0, z_2_imaginary = 0, z_ri = 0;
+            z_real = pos_x; z_imaginary = pos_y;
             //calculate if it is on the set
             for(i=0;i<MAX_ITER;i++){
-                if (z_distance > 4.0) break;
+                
                 //zn = zr + zi;
-                double temp_z_real = z_real;
                 z_2_real = z_real*z_real; // z_real^2
                 z_2_imaginary = z_imaginary * z_imaginary; // 
+                
+                
                 z_ri = z_real * z_imaginary;
-                temp_z_real = z_2_real - z_2_imaginary + pos_x;
-                z_imaginary = pos_y + z_ri + z_ri; 
-                z_real = temp_z_real;
-                //to calc if it escapes we need |zn|, as it is a complex number
-                z_distance = z_2_real + z_2_imaginary;
+                z_real = z_2_real - z_2_imaginary + pos_x;
+                z_imaginary = z_ri + z_ri + pos_y; 
+                if (z_2_real + z_2_imaginary > 4.0) break;
                                 
             }
             array[MAX_COLUMNS*py + px] = i; // the matrix is declared as row major
