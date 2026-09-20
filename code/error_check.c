@@ -1,11 +1,9 @@
-#include "serial.c"
+#include "settings.c"
 
 const int max_errors = MAX_ROWS * MAX_COLUMNS * 0.0001;
 
 //Function declarations
 void check_output(int16_t* my_output, int16_t* teacher_output);
-
-void read_output(int16_t* array, int tam, char* file_name);
 
 //main
 int main(void){
@@ -14,8 +12,8 @@ int main(void){
     array_alloc(&my_output);
     array_alloc(&teacher_output);
 
-    read_output(my_output, MAX_COLUMNS*MAX_ROWS,MY_ESCAPE_FILE_NAME);
-    read_output(teacher_output, MAX_COLUMNS*MAX_ROWS,TEACHER_ESCAPE_FILE_NAME);
+    read_output(my_output, MAX_COLUMNS*MAX_ROWS,SERIAL_ESCAPE_FILE_NAME);
+    //read_output(teacher_output, MAX_COLUMNS*MAX_ROWS,TEACHER_ESCAPE_FILE_NAME);
 
     check_output(my_output,teacher_output);
 
@@ -49,23 +47,5 @@ void check_output(int16_t* my_output, int16_t* teacher_output){
             }
 
         }
-    }
-
-
-}
-
-void read_output(int16_t* array, int tam, char* file_name){
-    char output_directory[256];
-    snprintf(output_directory,sizeof(output_directory),"%s/%s", OUTPUT_BIN, file_name);
-
-    FILE* fp = fopen(output_directory,"rb");
-    if (fp){
-        fread(array, sizeof(int16_t), tam, fp);
-        fclose(fp);
-        printf("Read the file %s with success\n", output_directory);
-    }
-    else{
-        printf("Din't find file named %s\n", output_directory);
-        exit(1);
     }
 }
