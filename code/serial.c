@@ -35,24 +35,22 @@ void write_escape_array_file(int16_t* pointer,int tam ,char* output_name){
 }
 
 void calc_escape_time(int16_t* array){
-    double pos_x, pos_y, z_real=0, z_imaginary=0, z_new = 0, z_distance; //complex position of the "pixel"
-    int px,py, i; //actual pixel position (in image)
+    double z_new = 0, z_distance; //complex position of the "pixel"
+    int i; //actual pixel position (in image)
        
     double x_step_size = (X_MAX - X_MIN)/MAX_COLUMNS;
     double y_step_size = (Y_MAX - Y_MIN)/ MAX_ROWS;
 
-    for (py=0;py < MAX_ROWS ; py++){
-        pos_y = Y_MIN + (py * y_step_size); // actual position in the plane like: -1.5 + (0 * 0.007)
+    for (int py=0;py < MAX_ROWS ; py++){
+        double pos_y = Y_MIN + (py * y_step_size); // actual position in the plane like: -1.5 + (0 * 0.007)
 
-        for (px=0; px < MAX_COLUMNS; px++){
-            pos_x = X_MIN + (px*x_step_size); // the same as above, actual position in the plane
-
-            z_real = pos_x; z_imaginary = pos_y, z_distance=0;
+        for (int px=0; px < MAX_COLUMNS; px++){
+            double pos_x = X_MIN + (px*x_step_size); // the same as above, actual position in the plane
 
             //calculate if it is on the set
             for(i=0;i<MAX_ITER;i++){
-                
-                
+                int z_real=px, z_imaginary=py;
+                z_distance=0;
                 //zn = zr + zi;
                 double temp_z_real = z_real*z_real - (z_imaginary * z_imaginary) + pos_x;
                 z_imaginary = pos_y + 2*z_real*z_imaginary; 
@@ -71,18 +69,18 @@ void calc_escape_time(int16_t* array){
 }
 
 void calc_escape_time_3_multi(int16_t* array){
-    double pos_x, pos_y, z_real=0, z_imaginary=0; //complex position of the "pixel"
+    double z_real=0, z_imaginary=0; //complex position of the "pixel"
     double z_2_real=0, z_2_imaginary = 0, z_ri = 0;
-    int px,py, i; //actual pixel position (in image)
+    int i; //actual pixel position (in image)
        
     double x_step_size = (X_MAX - X_MIN)/MAX_COLUMNS;
     double y_step_size = (Y_MAX - Y_MIN)/ MAX_ROWS;
 
-    for (py=0;py < MAX_ROWS ; py++){
-        pos_y = Y_MIN + (py * y_step_size); // actual position in the plane like: -1.5 + (0 * 0.007)
+    for (int py=0;py < MAX_ROWS ; py++){
+        double pos_y = Y_MIN + (py * y_step_size); // actual position in the plane like: -1.5 + (0 * 0.007)
 
-        for (px=0; px < MAX_COLUMNS; px++){
-            pos_x = X_MIN + (px*x_step_size); // the same as above, actual position in the plane
+        for (int px=0; px < MAX_COLUMNS; px++){
+            double pos_x = X_MIN + (px*x_step_size); // the same as above, actual position in the plane
 
             z_real = pos_x; z_imaginary = pos_y;
             //calculate if it is on the set
