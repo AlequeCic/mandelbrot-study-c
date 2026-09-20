@@ -17,7 +17,7 @@ void calc_escape_time_3_multi(int16_t* array);
 void write_escape_array_file(int16_t* pointer,int tam ,char* output_name){
     //defining the directory with the bin
     char output_directory[256];
-    snprintf(output_directory, sizeof(output_directory), "%s/%s", OUTPUT_BIN, output_name);
+    snprintf(output_directory, sizeof(output_directory), "%s/%s", OUTPUT_ESCAPE_BIN, output_name);
 
     //opening the file in write binary mode
     FILE* fp = fopen(output_directory, "wb"); 
@@ -47,20 +47,19 @@ void calc_escape_time(int16_t* array){
         for (int px=0; px < MAX_COLUMNS; px++){
             double pos_x = X_MIN + (px*x_step_size); // the same as above, actual position in the plane
 
+            double z_real=0, z_imaginary=0;
             //calculate if it is on the set
             for(i=0;i<MAX_ITER;i++){
-                int z_real=px, z_imaginary=py;
-                z_distance=0;
                 //zn = zr + zi;
                 double temp_z_real = z_real*z_real - (z_imaginary * z_imaginary) + pos_x;
-                z_imaginary = pos_y + 2*z_real*z_imaginary; 
+                z_imaginary = pos_y + 2.0*z_real*z_imaginary; 
                 z_real = temp_z_real;
 
                 //to calc if it escapes we need |zn|, as it is a complex number
                 z_distance = z_real*z_real + z_imaginary*z_imaginary;
                 if (z_distance > 4.0) break;
             }
-            array[MAX_ROWS*py + px] = i; // the matrix is declared as row major
+            array[MAX_COLUMNS*py + px] = i; // the matrix is declared as row major
 
         }
 
@@ -82,7 +81,7 @@ void calc_escape_time_3_multi(int16_t* array){
         for (int px=0; px < MAX_COLUMNS; px++){
             double pos_x = X_MIN + (px*x_step_size); // the same as above, actual position in the plane
 
-            z_real = pos_x; z_imaginary = pos_y;
+            z_real = 0; z_imaginary = 0;
             //calculate if it is on the set
             for(i=0;i<MAX_ITER;i++){
                 
