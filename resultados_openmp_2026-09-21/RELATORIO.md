@@ -37,6 +37,8 @@ Fórmulas: `Speedup(p) = mediana(T_serial) / mediana(T_paralelo,p)` e `Eficiênc
 
 ![Tempo, Speedup e Eficiência](graficos/tempo_speedup_eficiencia_padrao.png)
 
+A linha cinza do gráfico de tempo é a mediana da referência serial; a linha azul mostra a mediana paralela em cada contagem de threads.
+
 ## Políticas de escalonamento e chunk
 
 Com o máximo de threads disponível na máquina, a melhor combinação no input padrão foi `dynamic, chunk=4` com mediana de 0.822 s. Ela equivale a Speedup de 14.763x e Eficiência de 92.3% frente à mediana serial. No vale dos cavalos-marinhos, a melhor combinação foi `static, chunk=16` com mediana de 0.373 s (Speedup de 14.435x).

@@ -174,6 +174,7 @@ def save_image(image: Image.Image, output: Path) -> None:
 def plot_scaling(summary: list[dict[str, object]], output: Path) -> None:
     threads = [str(row["threads"]) for row in summary]
     times = [number(str(row["parallel_median_s"])) for row in summary]
+    serial_time = number(str(summary[0]["serial_median_s"]))
     speedups = [number(str(row["speedup"])) for row in summary]
     efficiencies = [number(str(row["efficiency_percent"])) for row in summary]
     image = Image.new("RGB", (1800, 560), "#ffffff")
@@ -182,7 +183,9 @@ def plot_scaling(summary: list[dict[str, object]], output: Path) -> None:
               font=font(26, True), fill="#0f172a")
     panels = [(20, 65, 600, 540), (610, 65, 1190, 540), (1200, 65, 1780, 540)]
     line_chart(draw, panels[0], "Tempo de execução", threads,
-               [("mediana", times, "#2563eb")], "Tempo (s)")
+               [("paralelo", times, "#2563eb"),
+                ("serial ref.", [serial_time] * len(threads), "#64748b")],
+               "Tempo (s)")
     line_chart(draw, panels[1], "Speedup", threads,
                [("medido", speedups, "#ea580c"),
                 ("ideal", [float(value) for value in threads], "#64748b")],
@@ -342,6 +345,8 @@ Fórmulas: `Speedup(p) = mediana(T_serial) / mediana(T_paralelo,p)` e `Eficiênc
 
 ![Tempo, Speedup e Eficiência](graficos/tempo_speedup_eficiencia_padrao.png)
 
+A linha cinza do gráfico de tempo é a mediana da referência serial; a linha azul mostra a mediana paralela em cada contagem de threads.
+
 ## Políticas de escalonamento e chunk
 
 Com o máximo de threads disponível na máquina, a melhor combinação no input padrão foi `{best_standard['policy']}, chunk={best_standard['chunk']}` com mediana de {best_standard_seconds:.3f} s. Ela equivale a Speedup de {best_standard_speedup:.3f}x e Eficiência de {100 * best_standard_speedup / 16:.1f}% frente à mediana serial. No vale dos cavalos-marinhos, a melhor combinação foi `{best_horse['policy']}, chunk={best_horse['chunk']}` com mediana de {best_horse_seconds:.3f} s (Speedup de {best_horse_speedup:.3f}x).
@@ -462,9 +467,14 @@ def main() -> None:
 
     chart_dir = output_dir / "graficos"
     chart_dir.mkdir(exist_ok=True)
-    plot_scaling(scaling, chart_dir / "tempo_speedup_eficiencia_padrao.png")
-    plot_schedules(schedules, chart_dir / "comparacao_politicas_chunk.png")
-    plot_load_balance(balance, chart_dir / "balanceamento_seahorse.png")
+    scaling_chart = chart_dir / "tempo_speedup_eficiencia_padrao.png"
+    scheduling_chart = chart_dir / "comparacao_politicas_chunk.png"
+    balance_chart = chart_dir / "balanceamento_seahorse.png"
+    plot_scaling(scaling, scaling_chart)
+    if not scheduling_chart.exists():
+        plot_schedules(schedules, scheduling_chart)
+    if not balance_chart.exists():
+        plot_load_balance(balance, balance_chart)
 
     environment = collect_environment(output_dir)
     if arguments.environment and arguments.environment.exists():
