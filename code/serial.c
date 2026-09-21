@@ -3,13 +3,7 @@
 This file has the serial functions 
 */
 
-#include "settings.c"
-
-//Functions declarations
-void write_escape_array_file(int16_t* pointer,int tam ,char* output_name);
-
-void calc_escape_time(int16_t* array, double x_max, double x_min, double y_max, double y_min, int max_iter);
-
+#include "serial.h"
 
 //Functions implementations
 
@@ -34,9 +28,6 @@ void write_escape_array_file(int16_t* pointer,int tam ,char* output_name){
 }
 
 void calc_escape_time(int16_t* array, double x_max, double x_min, double y_max, double y_min, int max_iter){
-    double z_new = 0, z_distance; //complex position of the "pixel"
-    int i; //actual pixel position (in image)
-       
     double x_step_size = (x_max - x_min)/MAX_COLUMNS;
     double y_step_size = (y_max - y_min)/ MAX_ROWS;
 
@@ -46,8 +37,9 @@ void calc_escape_time(int16_t* array, double x_max, double x_min, double y_max, 
         for (int px=0; px < MAX_COLUMNS; px++){
             double pos_x = x_min + (px*x_step_size); // the same as above, actual position in the plane
 
-            double z_real=0, z_imaginary=0;
+            double z_real=0, z_imaginary=0, z_distance=0;
             //calculate if it is on the set
+            int i;
             for(i=0;i<max_iter;i++){
                 //zn = zr + zi;
                 double temp_z_real = z_real*z_real - (z_imaginary * z_imaginary) + pos_x;
@@ -58,7 +50,7 @@ void calc_escape_time(int16_t* array, double x_max, double x_min, double y_max, 
                 z_distance = z_real*z_real + z_imaginary*z_imaginary;
                 if (z_distance > 4.0) break;
             }
-            array[MAX_COLUMNS*py + px] = i; // the matrix is declared as row major
+            array[MAX_COLUMNS*py + px] = (int16_t)i; // the matrix is declared as row major
 
         }
 

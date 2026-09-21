@@ -1,0 +1,6 @@
+Sistema operacional: Windows-11-10.0.26200-SP0
+Processador: AMD Ryzen 7 7735HS with Radeon Graphics
+Processadores lógicos detectados: 16
+Compilador: Microsoft C/C++ (cl.exe), otimização /O2
+OpenMP: MSVC /openmp
+Medições: 3 repetições por configuração; estatística principal = mediana

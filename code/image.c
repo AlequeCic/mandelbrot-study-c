@@ -1,4 +1,4 @@
-#include "settings.c"
+#include "settings.h"
 
 void write_image_mono(uint8_t* array, int16_t* escape_time_array, int max_iter);
 

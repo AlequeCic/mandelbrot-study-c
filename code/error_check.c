@@ -1,4 +1,4 @@
-#include "settings.c"
+#include "settings.h"
 
 const int max_errors = MAX_ROWS * MAX_COLUMNS * 0.0001;
 
