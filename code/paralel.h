@@ -19,9 +19,11 @@ typedef enum {
     PARALLEL_SCHEDULE_GUIDED
 } parallel_schedule_t;
 
-void calc_escape_time_parallel(int16_t* array, double x_max, double x_min,
-                               double y_max, double y_min, int max_iter);
-void calc_escape_time_parallel_scheduled(int16_t* array, double x_max,
+void calc_escape_time_parallel(int32_t* array, int rows, int columns,
+                               double x_max, double x_min, double y_max,
+                               double y_min, int max_iter);
+void calc_escape_time_parallel_scheduled(int32_t* array, int rows,
+                                         int columns, double x_max,
                                          double x_min, double y_max,
                                          double y_min, int max_iter,
                                          parallel_schedule_t schedule_kind,

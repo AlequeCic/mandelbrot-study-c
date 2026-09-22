@@ -1,8 +1,7 @@
-/*
-This file has the parallel functions.
-*/
+/* OpenMP Mandelbrot escape-time implementation. */
 
 #include "paralel.h"
+
 #include <limits.h>
 
 typedef struct {
@@ -13,46 +12,41 @@ typedef struct {
 
 static inline int calculate_escape_time(double pos_x, double pos_y,
                                         int max_iter) {
-    double z_real = 0;
-    double z_imaginary = 0;
-    int i;
+    double z_real = 0.0;
+    double z_imaginary = 0.0;
+    int iteration;
 
-    for (i=0; i<max_iter; i++) {
-        double temp_z_real = z_real*z_real -
-            (z_imaginary * z_imaginary) + pos_x;
-        double z_distance;
-
-        z_imaginary = pos_y + 2.0*z_real*z_imaginary;
-        z_real = temp_z_real;
-        z_distance = z_real*z_real + z_imaginary*z_imaginary;
-        if (z_distance > 4.0) break;
+    for (iteration = 0; iteration < max_iter; iteration++) {
+        double next_z_real = z_real * z_real - z_imaginary * z_imaginary + pos_x;
+        z_imaginary = pos_y + 2.0 * z_real * z_imaginary;
+        z_real = next_z_real;
+        if (z_real * z_real + z_imaginary * z_imaginary > 4.0) {
+            break;
+        }
     }
-
-    return i;
+    return iteration;
 }
 
 #define PROCESS_ROWS_WITHOUT_STATS(OMP_FOR) \
     OMP_FOR \
-    for (py=0; py<MAX_ROWS; py++) { \
-        double pos_y = y_min + (py * y_step_size); \
-        int px; \
-        for (px=0; px<MAX_COLUMNS; px++) { \
-            double pos_x = x_min + (px * x_step_size); \
-            int i = calculate_escape_time(pos_x, pos_y, max_iter); \
-            array[MAX_COLUMNS*py + px] = (int16_t)i; \
+    for (py = 0; py < rows; py++) { \
+        double pos_y = y_min + py * y_step_size; \
+        for (int px = 0; px < columns; px++) { \
+            double pos_x = x_min + px * x_step_size; \
+            int iteration = calculate_escape_time(pos_x, pos_y, max_iter); \
+            array[(size_t)py * (size_t)columns + (size_t)px] = iteration; \
         } \
     }
 
 #define PROCESS_ROWS_WITH_STATS(OMP_FOR) \
     OMP_FOR \
-    for (py=0; py<MAX_ROWS; py++) { \
-        double pos_y = y_min + (py * y_step_size); \
-        int px; \
-        for (px=0; px<MAX_COLUMNS; px++) { \
-            double pos_x = x_min + (px * x_step_size); \
-            int i = calculate_escape_time(pos_x, pos_y, max_iter); \
-            array[MAX_COLUMNS*py + px] = (int16_t)i; \
-            thread_loads[thread_id].iterations += i; \
+    for (py = 0; py < rows; py++) { \
+        double pos_y = y_min + py * y_step_size; \
+        for (int px = 0; px < columns; px++) { \
+            double pos_x = x_min + px * x_step_size; \
+            int iteration = calculate_escape_time(pos_x, pos_y, max_iter); \
+            array[(size_t)py * (size_t)columns + (size_t)px] = iteration; \
+            thread_loads[thread_id].iterations += iteration; \
         } \
         thread_loads[thread_id].rows++; \
     }
@@ -67,11 +61,11 @@ static inline int calculate_escape_time(double pos_x, double pos_y,
 #define OMP_PARALLEL_FOR_GUIDED _Pragma("omp parallel for schedule(guided, chunk)")
 
 static void calc_escape_time_parallel_without_stats(
-    int16_t* array, double x_max, double x_min, double y_max,
-    double y_min, int max_iter, parallel_schedule_t schedule_kind,
-    int chunk) {
-    double x_step_size = (x_max - x_min)/MAX_COLUMNS;
-    double y_step_size = (y_max - y_min)/MAX_ROWS;
+    int32_t* array, int rows, int columns, double x_max, double x_min,
+    double y_max, double y_min, int max_iter,
+    parallel_schedule_t schedule_kind, int chunk) {
+    double x_step_size = (x_max - x_min) / columns;
+    double y_step_size = (y_max - y_min) / rows;
     int py;
 
     if (schedule_kind == PARALLEL_SCHEDULE_STATIC && chunk == 0) {
@@ -86,31 +80,30 @@ static void calc_escape_time_parallel_without_stats(
 }
 
 void calc_escape_time_parallel_scheduled(
-    int16_t* array, double x_max, double x_min, double y_max,
-    double y_min, int max_iter, parallel_schedule_t schedule_kind, int chunk,
-    parallel_stats_t* stats) {
-
-    if (chunk < 1 && schedule_kind != PARALLEL_SCHEDULE_STATIC) chunk = 1;
+    int32_t* array, int rows, int columns, double x_max, double x_min,
+    double y_max, double y_min, int max_iter,
+    parallel_schedule_t schedule_kind, int chunk, parallel_stats_t* stats) {
+    if (chunk < 1 && schedule_kind != PARALLEL_SCHEDULE_STATIC) {
+        chunk = 1;
+    }
 
     if (stats == NULL) {
-        calc_escape_time_parallel_without_stats(array, x_max, x_min, y_max,
-                                                y_min, max_iter, schedule_kind,
-                                                chunk);
+        calc_escape_time_parallel_without_stats(array, rows, columns, x_max,
+                                                x_min, y_max, y_min, max_iter,
+                                                schedule_kind, chunk);
         return;
     }
 
     int max_threads = omp_get_max_threads();
     thread_load_t* thread_loads = calloc((size_t)max_threads,
                                          sizeof(*thread_loads));
-
     if (thread_loads == NULL) {
-        free(thread_loads);
         fprintf(stderr, "Unable to allocate per-thread statistics.\n");
         exit(EXIT_FAILURE);
     }
 
-    double x_step_size = (x_max - x_min)/MAX_COLUMNS;
-    double y_step_size = (y_max - y_min)/MAX_ROWS;
+    double x_step_size = (x_max - x_min) / columns;
+    double y_step_size = (y_max - y_min) / rows;
     int used_threads = 0;
     int py;
 
@@ -135,9 +128,7 @@ void calc_escape_time_parallel_scheduled(
     long long total_iterations = 0;
     long long max_thread_iterations = 0;
     long long min_thread_iterations = LLONG_MAX;
-    int thread_id;
-
-    for (thread_id=0; thread_id<used_threads; thread_id++) {
+    for (int thread_id = 0; thread_id < used_threads; thread_id++) {
         long long load = thread_loads[thread_id].iterations;
         total_iterations += load;
         if (load > max_thread_iterations) max_thread_iterations = load;
@@ -150,15 +141,15 @@ void calc_escape_time_parallel_scheduled(
     stats->max_thread_iterations = max_thread_iterations;
     stats->min_thread_iterations = min_thread_iterations;
     stats->avg_thread_iterations = (double)total_iterations / used_threads;
-    stats->load_balance_factor =
-        max_thread_iterations / stats->avg_thread_iterations;
-
+    stats->load_balance_factor = max_thread_iterations /
+                                 stats->avg_thread_iterations;
     free(thread_loads);
 }
 
-void calc_escape_time_parallel(int16_t* array, double x_max, double x_min,
-                               double y_max, double y_min, int max_iter) {
-    calc_escape_time_parallel_scheduled(array, x_max, x_min, y_max, y_min,
-                                        max_iter, PARALLEL_SCHEDULE_STATIC, 0,
-                                        NULL);
+void calc_escape_time_parallel(int32_t* array, int rows, int columns,
+                               double x_max, double x_min, double y_max,
+                               double y_min, int max_iter) {
+    calc_escape_time_parallel_scheduled(
+        array, rows, columns, x_max, x_min, y_max, y_min, max_iter,
+        PARALLEL_SCHEDULE_STATIC, 0, NULL);
 }

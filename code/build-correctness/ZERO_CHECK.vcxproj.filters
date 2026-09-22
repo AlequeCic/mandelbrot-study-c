@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\lacer\Desktop\mandelbrot-study-c\code\build-correctness\CMakeFiles\531c8aaaefd345982cb28512e5813895\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{476122B5-DE62-3A74-8805-0ED1FF6CFCA6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

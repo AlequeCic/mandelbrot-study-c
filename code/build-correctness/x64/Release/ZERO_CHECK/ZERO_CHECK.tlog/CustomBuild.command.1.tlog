@@ -1,0 +1,10 @@
+^C:\USERS\LACER\DESKTOP\MANDELBROT-STUDY-C\CODE\BUILD-CORRECTNESS\CMAKEFILES\531C8AAAEFD345982CB28512E5813895\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/lacer/Desktop/mandelbrot-study-c/code -BC:/Users/lacer/Desktop/mandelbrot-study-c/code/build-correctness --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/lacer/Desktop/mandelbrot-study-c/code/build-correctness/code.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

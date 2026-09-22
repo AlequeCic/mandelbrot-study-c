@@ -18,3 +18,7 @@ add_executable(benchmark
         paralel.c
         settings.c)
 target_link_libraries(benchmark PRIVATE OpenMP::OpenMP_C)
+
+add_executable(image
+        image.c
+        settings.c)

@@ -3,8 +3,10 @@
 
 #include "settings.h"
 
-void write_escape_array_file(int16_t* pointer, int tam, char* output_name);
-void calc_escape_time(int16_t* array, double x_max, double x_min,
-                      double y_max, double y_min, int max_iter);
+int write_escape_array_file(const int32_t* pointer, size_t count,
+                            const char* output_name);
+void calc_escape_time(int32_t* array, int rows, int columns,
+                      double x_max, double x_min, double y_max,
+                      double y_min, int max_iter);
 
 #endif

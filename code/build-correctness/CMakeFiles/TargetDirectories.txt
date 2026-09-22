@@ -1,0 +1,5 @@
+C:/Users/lacer/Desktop/mandelbrot-study-c/code/build-correctness/CMakeFiles/code.dir
+C:/Users/lacer/Desktop/mandelbrot-study-c/code/build-correctness/CMakeFiles/benchmark.dir
+C:/Users/lacer/Desktop/mandelbrot-study-c/code/build-correctness/CMakeFiles/image.dir
+C:/Users/lacer/Desktop/mandelbrot-study-c/code/build-correctness/CMakeFiles/ALL_BUILD.dir
+C:/Users/lacer/Desktop/mandelbrot-study-c/code/build-correctness/CMakeFiles/ZERO_CHECK.dir

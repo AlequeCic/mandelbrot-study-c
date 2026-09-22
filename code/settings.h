@@ -7,6 +7,8 @@
 #include <math.h>
 #include <omp.h>
 
+_Static_assert(sizeof(int32_t) == 4, "The canonical output requires 32-bit integers.");
+
 // Problem variables
 #define MAX_ROWS 4096
 #define MAX_COLUMNS 4096
@@ -26,16 +28,18 @@
 #define OUTPUT_IMAGES_BIN "output_images"
 
 // Output file names
-#define SERIAL_ESCAPE_FILE_NAME "serial_output"
-#define HORSE_SERIAL_ESCAPE_FILE_NAME "horse_serial_output"
-#define OPENMP_ESCAPE_FILE_NAME "openmp_output"
-#define HORSE_OPENMP_ESCAPE_FILE_NAME "horse_openmp_output"
+#define SERIAL_ESCAPE_FILE_NAME "serial_output.bin"
+#define HORSE_SERIAL_ESCAPE_FILE_NAME "horse_serial_output.bin"
+#define OPENMP_ESCAPE_FILE_NAME "openmp_output.bin"
+#define HORSE_OPENMP_ESCAPE_FILE_NAME "horse_openmp_output.bin"
 
 #define IMAGE_MONO_FILE_NAME "image_mono.ppm"
 #define IMAGE_FILE_NAME "image.ppm"
 #define HORSE_IMAGE_FILE_NAME "horse_image.ppm"
+#define OPENMP_IMAGE_FILE_NAME "openmp_image.ppm"
+#define HORSE_OPENMP_IMAGE_FILE_NAME "horse_openmp_image.ppm"
 
-void array_alloc(int16_t** array);
-void read_output(int16_t* array, int tam, char* file_name);
+int array_alloc(int32_t** array, int rows, int columns);
+int read_output(int32_t* array, size_t count, const char* file_name);
 
 #endif

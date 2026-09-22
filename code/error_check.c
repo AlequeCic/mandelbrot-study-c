@@ -3,16 +3,26 @@
 const int max_errors = MAX_ROWS * MAX_COLUMNS * 0.0001;
 
 //Function declarations
-void check_output(int16_t* my_output, int16_t* teacher_output);
+void check_output(int32_t* my_output, int32_t* teacher_output);
 
 //main
 int main(void){
-    int16_t *my_output, *teacher_output;
+    int32_t *my_output = NULL, *teacher_output = NULL;
     
-    array_alloc(&my_output);
-    array_alloc(&teacher_output);
+    if (!array_alloc(&my_output, MAX_ROWS, MAX_COLUMNS) ||
+        !array_alloc(&teacher_output, MAX_ROWS, MAX_COLUMNS)) {
+        fprintf(stderr, "Unable to allocate comparison matrices.\n");
+        free(my_output);
+        free(teacher_output);
+        return EXIT_FAILURE;
+    }
 
-    read_output(my_output, MAX_COLUMNS*MAX_ROWS,SERIAL_ESCAPE_FILE_NAME);
+    if (!read_output(my_output, (size_t)MAX_COLUMNS * MAX_ROWS,
+                     SERIAL_ESCAPE_FILE_NAME)) {
+        free(my_output);
+        free(teacher_output);
+        return EXIT_FAILURE;
+    }
     //read_output(teacher_output, MAX_COLUMNS*MAX_ROWS,TEACHER_ESCAPE_FILE_NAME);
 
     check_output(my_output,teacher_output);
@@ -26,7 +36,7 @@ int main(void){
 }
 
 //Functions implementation
-void check_output(int16_t* my_output, int16_t* teacher_output){
+void check_output(int32_t* my_output, int32_t* teacher_output){
 
     int error_count = 0;
 

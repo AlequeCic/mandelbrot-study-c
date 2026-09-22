@@ -1,0 +1,14 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Clazy" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="CppCVQualifierCanNotBeAppliedToReference" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="CppDFANullDereference" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="CppEnforceNestedNamespacesStyle" enabled="true" level="HINT" enabled_by_default="true" />
+    <inspection_tool class="CppFinalNonOverridingVirtualFunction" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="CppFunctionResultShouldBeUsed" enabled="true" level="HINT" enabled_by_default="true" />
+    <inspection_tool class="CppParameterNamesMismatch" enabled="true" level="HINT" enabled_by_default="true" />
+    <inspection_tool class="CppTypeAliasNeverUsed" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="RegExpOctalEscape" enabled="true" level="INFORMATION" enabled_by_default="true" />
+  </profile>
+</component>

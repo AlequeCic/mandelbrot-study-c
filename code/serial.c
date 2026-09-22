@@ -1,59 +1,55 @@
-
-/*
-This file has the serial functions 
-*/
+/* Serial Mandelbrot escape-time implementation and canonical binary output. */
 
 #include "serial.h"
 
-//Functions implementations
+int write_escape_array_file(const int32_t* pointer, size_t count,
+                            const char* output_name) {
+    char output_path[256];
+    snprintf(output_path, sizeof(output_path), "%s/%s", OUTPUT_ESCAPE_BIN,
+             output_name);
 
-void write_escape_array_file(int16_t* pointer,int tam ,char* output_name){
-    //defining the directory with the bin
-    char output_directory[256];
-    snprintf(output_directory, sizeof(output_directory), "%s/%s", OUTPUT_ESCAPE_BIN, output_name);
-
-    //opening the file in write binary mode
-    FILE* fp = fopen(output_directory, "wb"); 
-
-    if (fp){
-        //writing in int size as the teacher asked to
-        fwrite(pointer, sizeof(int16_t), tam, fp);
-        fclose(fp);
+    FILE* file = fopen(output_path, "wb");
+    if (file == NULL) {
+        fprintf(stderr, "Unable to open %s for writing.\n", output_path);
+        return 0;
     }
 
-    else{
-        printf("file can't be opened");
+    size_t written = fwrite(pointer, sizeof(*pointer), count, file);
+    int close_status = fclose(file);
+    if (written != count || close_status != 0) {
+        fprintf(stderr, "Unable to write the complete matrix to %s.\n",
+                output_path);
+        return 0;
     }
-
+    return 1;
 }
 
-void calc_escape_time(int16_t* array, double x_max, double x_min, double y_max, double y_min, int max_iter){
-    double x_step_size = (x_max - x_min)/MAX_COLUMNS;
-    double y_step_size = (y_max - y_min)/ MAX_ROWS;
+void calc_escape_time(int32_t* array, int rows, int columns,
+                      double x_max, double x_min, double y_max,
+                      double y_min, int max_iter) {
+    double x_step_size = (x_max - x_min) / columns;
+    double y_step_size = (y_max - y_min) / rows;
 
-    for (int py=0;py < MAX_ROWS ; py++){
-        double pos_y = y_min + (py * y_step_size); // actual position in the plane like: -1.5 + (0 * 0.007)
+    for (int py = 0; py < rows; py++) {
+        double pos_y = y_min + py * y_step_size;
 
-        for (int px=0; px < MAX_COLUMNS; px++){
-            double pos_x = x_min + (px*x_step_size); // the same as above, actual position in the plane
+        for (int px = 0; px < columns; px++) {
+            double pos_x = x_min + px * x_step_size;
+            double z_real = 0.0;
+            double z_imaginary = 0.0;
+            int iteration;
 
-            double z_real=0, z_imaginary=0, z_distance=0;
-            //calculate if it is on the set
-            int i;
-            for(i=0;i<max_iter;i++){
-                //zn = zr + zi;
-                double temp_z_real = z_real*z_real - (z_imaginary * z_imaginary) + pos_x;
-                z_imaginary = pos_y + 2.0*z_real*z_imaginary; 
-                z_real = temp_z_real;
+            for (iteration = 0; iteration < max_iter; iteration++) {
+                double next_z_real = z_real * z_real -
+                    z_imaginary * z_imaginary + pos_x;
+                z_imaginary = pos_y + 2.0 * z_real * z_imaginary;
+                z_real = next_z_real;
 
-                //to calc if it escapes we need |zn|, as it is a complex number
-                z_distance = z_real*z_real + z_imaginary*z_imaginary;
-                if (z_distance > 4.0) break;
+                if (z_real * z_real + z_imaginary * z_imaginary > 4.0) {
+                    break;
+                }
             }
-            array[MAX_COLUMNS*py + px] = (int16_t)i; // the matrix is declared as row major
-
+            array[(size_t)py * (size_t)columns + (size_t)px] = iteration;
         }
-
     }
-
 }

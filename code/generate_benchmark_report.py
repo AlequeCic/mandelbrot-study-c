@@ -20,6 +20,44 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def validate_correctness(rows: list[dict[str, str]]) -> None:
+    if not rows:
+        raise ValueError("correctness.csv está vazio; não é possível afirmar corretude")
+    max_threads = max(int(row["threads"]) for row in rows)
+    expected = {
+        ("standard", "static", 0, threads)
+        for threads in (1, 2, 4, 8, 16)
+        if threads <= max_threads
+    }
+    expected.update(
+        (case, policy, chunk, max_threads)
+        for case in ("standard", "seahorse_valley")
+        for policy in ("static", "dynamic", "guided")
+        for chunk in (1, 4, 16, 64)
+    )
+    actual = [
+        (row["case"], row["policy"], int(row["chunk"]), int(row["threads"]))
+        for row in rows
+    ]
+    if len(actual) != len(expected) or set(actual) != expected:
+        raise ValueError("correctness.csv não contém exatamente as configurações esperadas")
+    failures = [
+        row for row in rows
+        if row["status"] != "APPROVED_EXACT"
+        or int(row["different_pixels"]) != 0
+        or int(row["max_abs_difference"]) != 0
+        or ("used_threads" in row and row["used_threads"] != row["threads"])
+    ]
+    if failures:
+        examples = ", ".join(
+            f"{row['case']}/{row['policy']}/chunk={row['chunk']}/threads={row['threads']}: {row['status']}"
+            for row in failures[:3]
+        )
+        raise ValueError(
+            f"{len(failures)} configuração(ões) sem igualdade exata em correctness.csv: {examples}"
+        )
+
+
 def number(value: str) -> float:
     return float(value)
 
@@ -55,7 +93,7 @@ def make_scaling_summary(raw: list[dict[str, str]]) -> list[dict[str, object]]:
     grouped: dict[int, list[float]] = defaultdict(list)
 
     for row in raw:
-        if row["case"] == "standard" and row["suite"] == "standard_scaling":
+        if row["case"] == "standard" and row["suite"] == "strong_scaling":
             grouped[int(row["requested_threads"])].append(number(row["seconds"]))
 
     summary: list[dict[str, object]] = []
@@ -100,6 +138,43 @@ def make_schedule_summary(raw: list[dict[str, str]]) -> list[dict[str, object]]:
                 "median_s": f"{median(values):.9f}",
                 "mean_s": f"{statistics.mean(values):.9f}",
                 "stdev_s": f"{statistics.stdev(values) if len(values) > 1 else 0:.9f}",
+            }
+        )
+    return summaries
+
+
+def make_weak_scaling_summary(
+    raw: list[dict[str, str]],
+) -> list[dict[str, object]]:
+    grouped: dict[tuple[int, int, int, str, int], list[float]] = defaultdict(list)
+    for row in raw:
+        key = (
+            int(row["threads"]),
+            int(row["width"]),
+            int(row["height"]),
+            row["policy"],
+            int(row["chunk"]),
+        )
+        grouped[key].append(number(row["seconds"]))
+
+    baseline = median(grouped[min(grouped)])
+    summaries = []
+    for (threads, width, height, policy, chunk), values in sorted(grouped.items()):
+        elapsed = median(values)
+        summaries.append(
+            {
+                "threads": threads,
+                "width": width,
+                "height": height,
+                "pixels": width * height,
+                "policy": policy,
+                "chunk": chunk,
+                "repetitions": len(values),
+                "median_s": f"{elapsed:.9f}",
+                "mean_s": f"{statistics.mean(values):.9f}",
+                "stdev_s": f"{statistics.stdev(values) if len(values) > 1 else 0:.9f}",
+                "weak_efficiency": f"{baseline / elapsed:.6f}",
+                "weak_efficiency_percent": f"{100 * baseline / elapsed:.3f}",
             }
         )
     return summaries
@@ -197,6 +272,27 @@ def plot_scaling(summary: list[dict[str, object]], output: Path) -> None:
     save_image(image, output)
 
 
+def plot_weak_scaling(summary: list[dict[str, object]], output: Path) -> None:
+    labels = [f"{row['threads']}t\n{row['width']}²" for row in summary]
+    times = [number(str(row["median_s"])) for row in summary]
+    efficiencies = [number(str(row["weak_efficiency_percent"])) for row in summary]
+    baseline = times[0]
+    image = Image.new("RGB", (1180, 560), "#ffffff")
+    draw = ImageDraw.Draw(image)
+    draw.text((26, 18), "Escalabilidade fraca: 4096² pixels por thread",
+              font=font(26, True), fill="#0f172a")
+    panels = [(20, 65, 590, 540), (600, 65, 1160, 540)]
+    line_chart(draw, panels[0], "Tempo de execução", labels,
+               [("medido", times, "#2563eb"),
+                ("ideal", [baseline] * len(times), "#64748b")],
+               "Tempo (s)")
+    line_chart(draw, panels[1], "Eficiência fraca", labels,
+               [("medida", efficiencies, "#16a34a"),
+                ("ideal", [100.0] * len(times), "#64748b")],
+               "T1 / Tp (%)")
+    save_image(image, output)
+
+
 def plot_schedules(summary: list[dict[str, object]], output: Path) -> None:
     image = Image.new("RGB", (1540, 590), "#ffffff")
     draw = ImageDraw.Draw(image)
@@ -252,6 +348,7 @@ def table_schedule_rows(summary: list[dict[str, object]], case: str) -> list[lis
 def write_report(
     output_dir: Path,
     scaling: list[dict[str, object]],
+    weak_scaling: list[dict[str, object]],
     schedules: list[dict[str, object]],
     correctness: list[dict[str, str]],
     balance: list[dict[str, str]],
@@ -290,6 +387,20 @@ def write_report(
         ],
     )
 
+    weak_scaling_table = markdown_table(
+        ["Threads", "Resolução", "Pixels/thread", "Mediana (s)", "Eficiência fraca"],
+        [
+            [
+                str(row["threads"]),
+                f"{row['width']} × {row['height']}",
+                f"{int(row['pixels']) // int(row['threads']):,}",
+                f"{number(str(row['median_s'])):.3f}",
+                f"{number(str(row['weak_efficiency_percent'])):.1f}%",
+            ]
+            for row in weak_scaling
+        ],
+    )
+
     standard_schedule_table = markdown_table(
         ["Política", "Chunk", "Mediana (s)", "Média (s)", "DP (s)"],
         table_schedule_rows(schedules, "standard"),
@@ -321,7 +432,7 @@ def write_report(
 
 ## Escopo e método
 
-Foram executadas {len(scaling)} configurações de escalabilidade forte no input padrão (região completa, 4096x4096, `MAX_ITER = 1000`) e 12 combinações de política/chunk para cada input. Cada medição foi repetida três vezes; as tabelas usam a mediana. O relógio envolve somente o cálculo de escape-time e exclui leitura e escrita de arquivos.
+Foram executadas {len(scaling)} configurações de escalabilidade forte no input padrão (região completa, 4096x4096, `MAX_ITER = 1000`), {len(weak_scaling)} configurações de escalabilidade fraca e 12 combinações de política/chunk para cada input. Cada medição foi repetida três vezes; as tabelas usam a mediana. O relógio envolve somente o cálculo de escape-time e exclui leitura e escrita de arquivos.
 
 Ambiente registrado na execução:
 
@@ -347,9 +458,17 @@ Fórmulas: `Speedup(p) = mediana(T_serial) / mediana(T_paralelo,p)` e `Eficiênc
 
 A linha cinza do gráfico de tempo é a mediana da referência serial; a linha azul mostra a mediana paralela em cada contagem de threads.
 
+## Escalabilidade fraca
+
+Em cada configuração, a carga por thread foi mantida em 4096² pixels: 4096² com uma thread, 8192² com quatro e 16384² com 16. A política foi `static` sem chunk explícito. A eficiência fraca é `T(1 thread) / T(p threads)`; 100% representa tempo constante enquanto trabalho e recursos crescem juntos.
+
+{weak_scaling_table}
+
+![Tempo e eficiência de escalabilidade fraca](graficos/escalabilidade_fraca.png)
+
 ## Políticas de escalonamento e chunk
 
-Com o máximo de threads disponível na máquina, a melhor combinação no input padrão foi `{best_standard['policy']}, chunk={best_standard['chunk']}` com mediana de {best_standard_seconds:.3f} s. Ela equivale a Speedup de {best_standard_speedup:.3f}x e Eficiência de {100 * best_standard_speedup / 16:.1f}% frente à mediana serial. No vale dos cavalos-marinhos, a melhor combinação foi `{best_horse['policy']}, chunk={best_horse['chunk']}` com mediana de {best_horse_seconds:.3f} s (Speedup de {best_horse_speedup:.3f}x).
+Com o máximo de threads disponível na máquina, a melhor combinação no input padrão foi `{best_standard['policy']}, chunk={best_standard['chunk']}` com mediana de {best_standard_seconds:.3f} s. Ela equivale a Speedup de {best_standard_speedup:.3f}x e Eficiência de {100 * best_standard_speedup / int(best_standard['threads']):.1f}% frente à mediana serial. No vale dos cavalos-marinhos, a melhor combinação foi `{best_horse['policy']}, chunk={best_horse['chunk']}` com mediana de {best_horse_seconds:.3f} s (Speedup de {best_horse_speedup:.3f}x).
 
 ### Input padrão
 
@@ -361,7 +480,7 @@ Com o máximo de threads disponível na máquina, a melhor combinação no input
 
 ![Políticas e chunks](graficos/comparacao_politicas_chunk.png)
 
-No input padrão, `dynamic` com chunks 1 e 4 foi a política mais rápida; chunks maiores aumentaram o tempo, em especial para `dynamic`. `guided` foi consistentemente mais lento neste ambiente. No caso de desbalanceamento, `static, chunk=16` e `static, chunk=4` superaram por pouco as alternativas dinâmicas. Portanto, o menor fator de carga não determina sozinho o menor tempo: a sobrecarga de agendamento e a localidade de memória também importam.
+No input padrão, `dynamic` com chunks pequenos foi a política mais rápida. No vale dos cavalos-marinhos, `dynamic, chunk=4` teve a menor mediana. Chunks maiores aumentaram o tempo em ambas as regiões, e `guided` foi consistentemente mais lento neste ambiente. Portanto, o menor fator de carga não determina sozinho o menor tempo: a sobrecarga de agendamento e a localidade de memória também importam.
 
 ## Balanceamento de carga - vale dos cavalos-marinhos
 
@@ -373,12 +492,14 @@ O trabalho foi estimado pela soma das contagens de iteração atribuídas a cada
 
 ## Arquivos desta pasta
 
-- `raw_timings.csv`: todas as repetições cruas.
+- `raw_timings.csv`: todas as repetições cruas de escalabilidade forte e políticas.
+- `weak_scaling.csv`: todas as repetições cruas de escalabilidade fraca.
 - `summary_standard_scaling.csv`: tabelas de tempo, Speedup e Eficiência.
+- `summary_weak_scaling.csv`: tabela de escalabilidade fraca e eficiência fraca.
 - `summary_scheduling.csv`: médias, medianas e desvios por política e chunk.
 - `correctness.csv`: comparação da matriz paralela com a referência sequencial.
 - `seahorse_load_balance.csv`: cargas por política/chunk e fator de balanceamento.
-- `graficos/`: os três gráficos usados neste relatório.
+- `graficos/`: os quatro gráficos usados neste relatório.
 """
     (output_dir / "RELATORIO.md").write_text(report, encoding="utf-8")
 
@@ -389,16 +510,22 @@ O trabalho foi estimado pela soma das contagens de iteração atribuídas a cada
 
 ```powershell
 cl /nologo /std:c11 /O2 /W4 /WX /openmp benchmark.c serial.c paralel.c settings.c /Fe:benchmark.exe
+cl /nologo /std:c11 /O2 /W4 /WX /openmp main.c serial.c paralel.c settings.c /Fe:code.exe
+cl /nologo /std:c11 /O2 /W4 /WX image.c settings.c /Fe:image.exe
 ```
 
 3. Crie uma pasta vazia e execute:
 
 ```powershell
+.\\code.exe
+.\\image.exe
 .\\benchmark.exe <pasta-de-resultados>
 python .\\generate_benchmark_report.py <pasta-de-resultados>
 ```
 
-O benchmark realiza três repetições, mede apenas o cálculo de escape-time e limita o experimento a 16 threads quando a máquina possuir mais processadores lógicos.
+O benchmark realiza três repetições, mede apenas o cálculo de escape-time e limita o experimento a 16 threads quando a máquina possuir mais processadores lógicos. A saída canônica do programa `code.exe` é uma matriz row-major de `int32_t` em arquivos `.bin`; `image.exe` gera as imagens PPM correspondentes.
+
+Para refazer somente a validação, crie outra pasta vazia e execute `./benchmark.exe --correctness-only <pasta-de-corretude>`. Esse modo recalcula as duas matrizes seriais, testa as mesmas configurações OpenMP e grava `correctness.csv` e `seahorse_load_balance.csv`. O processo retorna erro se qualquer comparação não for exata ou se o número de threads efetivamente usado for diferente do solicitado. Com 16 processadores lógicos, são 29 configurações.
 """
     (output_dir / "REPRODUZIR.md").write_text(reproduce, encoding="utf-8")
 
@@ -439,9 +566,12 @@ def main() -> None:
     output_dir = arguments.output_dir
 
     raw = read_csv(output_dir / "raw_timings.csv")
+    weak_raw = read_csv(output_dir / "weak_scaling.csv")
     correctness = read_csv(output_dir / "correctness.csv")
+    validate_correctness(correctness)
     balance = read_csv(output_dir / "seahorse_load_balance.csv")
     scaling = make_scaling_summary(raw)
+    weak_scaling = make_weak_scaling_summary(weak_raw)
     schedules = make_schedule_summary(raw)
     serial_standard = median([
         number(row["seconds"]) for row in raw
@@ -464,22 +594,29 @@ def main() -> None:
          "mean_s", "stdev_s"],
         schedules,
     )
+    write_csv(
+        output_dir / "summary_weak_scaling.csv",
+        ["threads", "width", "height", "pixels", "policy", "chunk",
+         "repetitions", "median_s", "mean_s", "stdev_s", "weak_efficiency",
+         "weak_efficiency_percent"],
+        weak_scaling,
+    )
 
     chart_dir = output_dir / "graficos"
     chart_dir.mkdir(exist_ok=True)
     scaling_chart = chart_dir / "tempo_speedup_eficiencia_padrao.png"
     scheduling_chart = chart_dir / "comparacao_politicas_chunk.png"
     balance_chart = chart_dir / "balanceamento_seahorse.png"
+    weak_scaling_chart = chart_dir / "escalabilidade_fraca.png"
     plot_scaling(scaling, scaling_chart)
-    if not scheduling_chart.exists():
-        plot_schedules(schedules, scheduling_chart)
-    if not balance_chart.exists():
-        plot_load_balance(balance, balance_chart)
+    plot_schedules(schedules, scheduling_chart)
+    plot_load_balance(balance, balance_chart)
+    plot_weak_scaling(weak_scaling, weak_scaling_chart)
 
     environment = collect_environment(output_dir)
     if arguments.environment and arguments.environment.exists():
         environment = arguments.environment.read_text(encoding="utf-8")
-    write_report(output_dir, scaling, schedules, correctness, balance,
+    write_report(output_dir, scaling, weak_scaling, schedules, correctness, balance,
                  environment, serial_standard, serial_horse)
 
 
