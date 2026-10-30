@@ -317,15 +317,21 @@ def plot_load_balance(balance: list[dict[str, str]], output: Path) -> None:
     draw = ImageDraw.Draw(image)
     draw.text((26, 18), "Balanceamento de carga: vale dos cavalos-marinhos",
               font=font(24, True), fill="#0f172a")
+    time_based = bool(balance) and "min_thread_seconds" in balance[0]
+    value_key = "load_balance_factor"
     styles = {"static": "#2563eb", "dynamic": "#ea580c", "guided": "#16a34a"}
     series = []
     for policy, color in styles.items():
         rows = [row for row in balance if row["policy"] == policy]
         rows.sort(key=lambda row: int(row["chunk"]))
-        series.append((policy, [number(row["load_balance_factor"]) for row in rows], color))
-    series.append(("ideal", [1.0] * 4, "#64748b"))
-    line_chart(draw, (20, 65, 860, 570), "Carga máxima / carga média",
-               ["1", "4", "16", "64"], series, "Fator de balanceamento", 0.95)
+        series.append((policy, [number(row[value_key]) for row in rows], color))
+    ideal = 0.0 if time_based else 1.0
+    series.append(("ideal", [ideal] * 4, "#64748b"))
+    title = "(T máximo - T mínimo) / T máximo" if time_based else "Carga máxima / carga média"
+    y_label = "FBC (0 é ideal)" if time_based else "Fator de balanceamento (1 é ideal)"
+    y_floor = 0.0 if time_based else 0.95
+    line_chart(draw, (20, 65, 860, 570), title,
+               ["1", "4", "16", "64"], series, y_label, y_floor)
     save_image(image, output)
 
 
@@ -414,19 +420,47 @@ def write_report(
     balance_rows = sorted(
         balance, key=lambda row: (policy_order[row["policy"]], int(row["chunk"]))
     )
-    balance_table = markdown_table(
-        ["Política", "Chunk", "Carga mín.", "Carga máx.", "Carga média", "Fator"],
-        [
+    time_based_balance = bool(balance_rows) and "min_thread_seconds" in balance_rows[0]
+    if time_based_balance:
+        balance_table = markdown_table(
+            ["Política", "Chunk", "T mín. (s)", "T máx. (s)",
+             "T médio (s)", "FBC"],
             [
-                row["policy"], row["chunk"],
-                f"{int(row['min_thread_iterations']):,}",
-                f"{int(row['max_thread_iterations']):,}",
-                f"{number(row['avg_thread_iterations']):,.0f}",
-                f"{number(row['load_balance_factor']):.3f}",
-            ]
-            for row in balance_rows
-        ],
-    )
+                [
+                    row["policy"], row["chunk"],
+                    f"{number(row['min_thread_seconds']):.6f}",
+                    f"{number(row['max_thread_seconds']):.6f}",
+                    f"{number(row['avg_thread_seconds']):.6f}",
+                    f"{number(row['load_balance_factor']):.6f}",
+                ]
+                for row in balance_rows
+            ],
+        )
+        balance_description = (
+            "Cada thread mede seu próprio tempo de cálculo antes da barreira "
+            "de sincronização. O FBC usa `(T_max - T_min) / T_max`, a mesma "
+            "fórmula da versão MPI; 0 representa distribuição ideal e valores "
+            "próximos de 1 indicam forte desbalanceamento."
+        )
+    else:
+        balance_table = markdown_table(
+            ["Política", "Chunk", "Carga mín.", "Carga máx.", "Carga média", "Fator"],
+            [
+                [
+                    row["policy"], row["chunk"],
+                    f"{int(row['min_thread_iterations']):,}",
+                    f"{int(row['max_thread_iterations']):,}",
+                    f"{number(row['avg_thread_iterations']):,.0f}",
+                    f"{number(row['load_balance_factor']):.3f}",
+                ]
+                for row in balance_rows
+            ],
+        )
+        balance_description = (
+            "O trabalho foi estimado pela soma das contagens de iteração "
+            "atribuídas a cada thread. O fator reportado é `carga máxima / "
+            "carga média`; 1,0 representa distribuição ideal."
+        )
 
     report = f"""# Resultados OpenMP - Mandelbrot
 
@@ -480,11 +514,11 @@ Com o máximo de threads disponível na máquina, a melhor combinação no input
 
 ![Políticas e chunks](graficos/comparacao_politicas_chunk.png)
 
-No input padrão, `dynamic` com chunks pequenos foi a política mais rápida. No vale dos cavalos-marinhos, `dynamic, chunk=4` teve a menor mediana. Chunks maiores aumentaram o tempo em ambas as regiões, e `guided` foi consistentemente mais lento neste ambiente. Portanto, o menor fator de carga não determina sozinho o menor tempo: a sobrecarga de agendamento e a localidade de memória também importam.
+No input padrão, a combinação mais rápida foi `{best_standard['policy']}, chunk={best_standard['chunk']}`. No vale dos cavalos-marinhos, `{best_horse['policy']}, chunk={best_horse['chunk']}` teve a menor mediana. Portanto, o melhor índice de balanceamento não determina sozinho o menor tempo: a sobrecarga de agendamento e a localidade de memória também importam.
 
 ## Balanceamento de carga - vale dos cavalos-marinhos
 
-O trabalho foi estimado pela soma das contagens de iteração atribuídas a cada thread. O fator reportado é `carga máxima / carga média`; 1,0 representa distribuição ideal. Valores maiores indicam uma thread com mais trabalho que a média.
+{balance_description}
 
 {balance_table}
 
@@ -498,7 +532,7 @@ O trabalho foi estimado pela soma das contagens de iteração atribuídas a cada
 - `summary_weak_scaling.csv`: tabela de escalabilidade fraca e eficiência fraca.
 - `summary_scheduling.csv`: médias, medianas e desvios por política e chunk.
 - `correctness.csv`: comparação da matriz paralela com a referência sequencial.
-- `seahorse_load_balance.csv`: cargas por política/chunk e fator de balanceamento.
+- `seahorse_load_balance.csv`: tempos por thread e índice de desbalanceamento por política/chunk.
 - `graficos/`: os quatro gráficos usados neste relatório.
 """
     (output_dir / "RELATORIO.md").write_text(report, encoding="utf-8")

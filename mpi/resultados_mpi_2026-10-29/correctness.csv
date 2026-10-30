@@ -1,0 +1,13 @@
+case,strategy,size,processes,different_pixels,max_abs_difference,allowed_different_pixels,allowed_max_abs_difference,status
+standard,static,4096,1,0,0,1677,1,APPROVED_EXACT
+standard,static,4096,2,0,0,1677,1,APPROVED_EXACT
+standard,static,4096,4,0,0,1677,1,APPROVED_EXACT
+standard,static,4096,8,0,0,1677,1,APPROVED_EXACT
+standard,static,4096,16,0,0,1677,1,APPROVED_EXACT
+standard,cyclic,4096,1,0,0,1677,1,APPROVED_EXACT
+standard,cyclic,4096,2,0,0,1677,1,APPROVED_EXACT
+standard,cyclic,4096,4,0,0,1677,1,APPROVED_EXACT
+standard,cyclic,4096,8,0,0,1677,1,APPROVED_EXACT
+standard,cyclic,4096,16,0,0,1677,1,APPROVED_EXACT
+seahorse,static,4096,16,0,0,1677,1,APPROVED_EXACT
+seahorse,cyclic,4096,16,0,0,1677,1,APPROVED_EXACT

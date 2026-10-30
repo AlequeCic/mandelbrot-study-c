@@ -1,0 +1,957 @@
+> C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\serial_reference.exe standard 4096 serial_standard.bin
+arquivo output_binaries/serial_standard.bin salvo com sucessoserial_summary case=standard size=4096 compute=6.402149916 write=1.111296654 output_written=1
+
+[exit=0]
+> C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\serial_reference.exe standard 4096 -
+serial_summary case=standard size=4096 compute=6.407307148 write=0.000000000 output_written=0
+
+[exit=0]
+> C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\serial_reference.exe standard 4096 -
+serial_summary case=standard size=4096 compute=6.367323637 write=0.000000000 output_written=0
+
+[exit=0]
+> C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\serial_reference.exe seahorse 4096 serial_seahorse.bin
+arquivo output_binaries/serial_seahorse.bin salvo com sucessoserial_summary case=seahorse size=4096 compute=2.777816057 write=0.213001251 output_written=1
+
+[exit=0]
+> C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\serial_reference.exe seahorse 4096 -
+serial_summary case=seahorse size=4096 compute=2.757233858 write=0.000000000 output_written=0
+
+[exit=0]
+> C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\serial_reference.exe seahorse 4096 -
+serial_summary case=seahorse size=4096 compute=2.748590708 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 strong_scaling_static_standard_4096_1.bin
+rank_metric strategy=static case=standard size=4096 procs=1 rank=0 compute_time=6.390414000
+arquivo output_binaries/strong_scaling_static_standard_4096_1.bin salvo com sucessosummary strategy=static case=standard size=4096 procs=1 compute_max=6.390414000 compute_min=6.390414000 gather=0.008840000 master_overhead=0.000000000 total=6.399254000 fbc=0.000000000 write=0.694604700 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=1 rank=0 compute_time=6.382550300
+summary strategy=static case=standard size=4096 procs=1 compute_max=6.382550300 compute_min=6.382550300 gather=0.010233300 master_overhead=0.000000000 total=6.392783600 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=1 rank=0 compute_time=6.396928000
+summary strategy=static case=standard size=4096 procs=1 compute_max=6.396928000 compute_min=6.396928000 gather=0.008785900 master_overhead=0.000000000 total=6.405713900 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 strong_scaling_static_standard_4096_2.bin
+rank_metric strategy=static case=standard size=4096 procs=2 rank=0 compute_time=3.183436900
+rank_metric strategy=static case=standard size=4096 procs=2 rank=1 compute_time=3.192231300
+arquivo output_binaries/strong_scaling_static_standard_4096_2.bin salvo com sucessosummary strategy=static case=standard size=4096 procs=2 compute_max=3.192231300 compute_min=3.183436900 gather=0.011212900 master_overhead=0.000000000 total=3.203444200 fbc=0.002754938 write=0.516651700 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=2 rank=0 compute_time=3.193114500
+rank_metric strategy=static case=standard size=4096 procs=2 rank=1 compute_time=3.209188300
+summary strategy=static case=standard size=4096 procs=2 compute_max=3.209188300 compute_min=3.193114500 gather=0.011216300 master_overhead=0.000000000 total=3.220404600 fbc=0.005008681 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=2 rank=0 compute_time=3.184016200
+rank_metric strategy=static case=standard size=4096 procs=2 rank=1 compute_time=3.192198300
+summary strategy=static case=standard size=4096 procs=2 compute_max=3.192198300 compute_min=3.184016200 gather=0.011749800 master_overhead=0.000000000 total=3.203948100 fbc=0.002563155 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 strong_scaling_static_standard_4096_4.bin
+rank_metric strategy=static case=standard size=4096 procs=4 rank=0 compute_time=0.084252100
+rank_metric strategy=static case=standard size=4096 procs=4 rank=1 compute_time=3.146192400
+rank_metric strategy=static case=standard size=4096 procs=4 rank=2 compute_time=3.159164000
+rank_metric strategy=static case=standard size=4096 procs=4 rank=3 compute_time=0.084700600
+arquivo output_binaries/strong_scaling_static_standard_4096_4.bin salvo com sucessosummary strategy=static case=standard size=4096 procs=4 compute_max=3.159164000 compute_min=0.084252100 gather=0.015207300 master_overhead=0.000000000 total=3.174371300 fbc=0.973330888 write=0.418527900 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=4 rank=0 compute_time=0.085739000
+rank_metric strategy=static case=standard size=4096 procs=4 rank=1 compute_time=3.162438900
+rank_metric strategy=static case=standard size=4096 procs=4 rank=2 compute_time=3.166767700
+rank_metric strategy=static case=standard size=4096 procs=4 rank=3 compute_time=0.085755200
+summary strategy=static case=standard size=4096 procs=4 compute_max=3.166767700 compute_min=0.085739000 gather=0.016467000 master_overhead=0.000000000 total=3.183234700 fbc=0.972925390 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=4 rank=0 compute_time=0.105187800
+rank_metric strategy=static case=standard size=4096 procs=4 rank=1 compute_time=3.144230400
+rank_metric strategy=static case=standard size=4096 procs=4 rank=2 compute_time=3.157117000
+rank_metric strategy=static case=standard size=4096 procs=4 rank=3 compute_time=0.096348900
+summary strategy=static case=standard size=4096 procs=4 compute_max=3.157117000 compute_min=0.096348900 gather=0.016029000 master_overhead=0.000000000 total=3.173146000 fbc=0.969481999 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 strong_scaling_static_standard_4096_8.bin
+rank_metric strategy=static case=standard size=4096 procs=8 rank=0 compute_time=0.005619200
+rank_metric strategy=static case=standard size=4096 procs=8 rank=1 compute_time=0.087112300
+rank_metric strategy=static case=standard size=4096 procs=8 rank=2 compute_time=0.972955400
+rank_metric strategy=static case=standard size=4096 procs=8 rank=3 compute_time=2.180337000
+rank_metric strategy=static case=standard size=4096 procs=8 rank=4 compute_time=2.183869700
+rank_metric strategy=static case=standard size=4096 procs=8 rank=5 compute_time=0.978311200
+rank_metric strategy=static case=standard size=4096 procs=8 rank=6 compute_time=0.081390500
+rank_metric strategy=static case=standard size=4096 procs=8 rank=7 compute_time=0.005600200
+arquivo output_binaries/strong_scaling_static_standard_4096_8.bin salvo com sucessosummary strategy=static case=standard size=4096 procs=8 compute_max=2.183869700 compute_min=0.005600200 gather=0.020548400 master_overhead=0.000000000 total=2.204418100 fbc=0.997435653 write=0.952137500 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=8 rank=0 compute_time=0.005332000
+rank_metric strategy=static case=standard size=4096 procs=8 rank=1 compute_time=0.083004800
+rank_metric strategy=static case=standard size=4096 procs=8 rank=2 compute_time=0.977131300
+rank_metric strategy=static case=standard size=4096 procs=8 rank=3 compute_time=2.182100900
+rank_metric strategy=static case=standard size=4096 procs=8 rank=4 compute_time=2.181133100
+rank_metric strategy=static case=standard size=4096 procs=8 rank=5 compute_time=0.978871400
+rank_metric strategy=static case=standard size=4096 procs=8 rank=6 compute_time=0.086954800
+rank_metric strategy=static case=standard size=4096 procs=8 rank=7 compute_time=0.005410300
+summary strategy=static case=standard size=4096 procs=8 compute_max=2.182100900 compute_min=0.005332000 gather=0.019729900 master_overhead=0.000000000 total=2.201830800 fbc=0.997556483 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=8 rank=0 compute_time=0.005329300
+rank_metric strategy=static case=standard size=4096 procs=8 rank=1 compute_time=0.084880600
+rank_metric strategy=static case=standard size=4096 procs=8 rank=2 compute_time=0.978211100
+rank_metric strategy=static case=standard size=4096 procs=8 rank=3 compute_time=2.184051400
+rank_metric strategy=static case=standard size=4096 procs=8 rank=4 compute_time=2.186458500
+rank_metric strategy=static case=standard size=4096 procs=8 rank=5 compute_time=0.977865600
+rank_metric strategy=static case=standard size=4096 procs=8 rank=6 compute_time=0.088709800
+rank_metric strategy=static case=standard size=4096 procs=8 rank=7 compute_time=0.012730400
+summary strategy=static case=standard size=4096 procs=8 compute_max=2.186458500 compute_min=0.005329300 gather=0.021203300 master_overhead=0.000000000 total=2.207661800 fbc=0.997562588 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 strong_scaling_static_standard_4096_16.bin
+rank_metric strategy=static case=standard size=4096 procs=16 rank=0 compute_time=0.006357700
+rank_metric strategy=static case=standard size=4096 procs=16 rank=1 compute_time=0.007153000
+rank_metric strategy=static case=standard size=4096 procs=16 rank=2 compute_time=0.008680700
+rank_metric strategy=static case=standard size=4096 procs=16 rank=3 compute_time=0.083078400
+rank_metric strategy=static case=standard size=4096 procs=16 rank=4 compute_time=0.285301600
+rank_metric strategy=static case=standard size=4096 procs=16 rank=5 compute_time=0.732388200
+rank_metric strategy=static case=standard size=4096 procs=16 rank=6 compute_time=0.963165900
+rank_metric strategy=static case=standard size=4096 procs=16 rank=7 compute_time=1.271231900
+rank_metric strategy=static case=standard size=4096 procs=16 rank=8 compute_time=1.270259900
+rank_metric strategy=static case=standard size=4096 procs=16 rank=9 compute_time=0.961735600
+rank_metric strategy=static case=standard size=4096 procs=16 rank=10 compute_time=0.730740400
+rank_metric strategy=static case=standard size=4096 procs=16 rank=11 compute_time=0.281041200
+rank_metric strategy=static case=standard size=4096 procs=16 rank=12 compute_time=0.082711200
+rank_metric strategy=static case=standard size=4096 procs=16 rank=13 compute_time=0.010627300
+rank_metric strategy=static case=standard size=4096 procs=16 rank=14 compute_time=0.005346000
+rank_metric strategy=static case=standard size=4096 procs=16 rank=15 compute_time=0.005218700
+arquivo output_binaries/strong_scaling_static_standard_4096_16.bin salvo com sucessosummary strategy=static case=standard size=4096 procs=16 compute_max=1.271231900 compute_min=0.005218700 gather=0.026630100 master_overhead=0.000000000 total=1.297862000 fbc=0.995894769 write=0.115391800 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=16 rank=0 compute_time=0.004607700
+rank_metric strategy=static case=standard size=4096 procs=16 rank=1 compute_time=0.006374900
+rank_metric strategy=static case=standard size=4096 procs=16 rank=2 compute_time=0.008678700
+rank_metric strategy=static case=standard size=4096 procs=16 rank=3 compute_time=0.079335000
+rank_metric strategy=static case=standard size=4096 procs=16 rank=4 compute_time=0.283211100
+rank_metric strategy=static case=standard size=4096 procs=16 rank=5 compute_time=0.723718200
+rank_metric strategy=static case=standard size=4096 procs=16 rank=6 compute_time=0.966475100
+rank_metric strategy=static case=standard size=4096 procs=16 rank=7 compute_time=1.268763400
+rank_metric strategy=static case=standard size=4096 procs=16 rank=8 compute_time=1.277332500
+rank_metric strategy=static case=standard size=4096 procs=16 rank=9 compute_time=0.966896600
+rank_metric strategy=static case=standard size=4096 procs=16 rank=10 compute_time=0.724262500
+rank_metric strategy=static case=standard size=4096 procs=16 rank=11 compute_time=0.278131000
+rank_metric strategy=static case=standard size=4096 procs=16 rank=12 compute_time=0.083513600
+rank_metric strategy=static case=standard size=4096 procs=16 rank=13 compute_time=0.007708600
+rank_metric strategy=static case=standard size=4096 procs=16 rank=14 compute_time=0.007698700
+rank_metric strategy=static case=standard size=4096 procs=16 rank=15 compute_time=0.007405400
+summary strategy=static case=standard size=4096 procs=16 compute_max=1.277332500 compute_min=0.004607700 gather=0.025379500 master_overhead=0.000000000 total=1.302712000 fbc=0.996392717 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=16 rank=0 compute_time=0.006739800
+rank_metric strategy=static case=standard size=4096 procs=16 rank=1 compute_time=0.007156400
+rank_metric strategy=static case=standard size=4096 procs=16 rank=2 compute_time=0.010383700
+rank_metric strategy=static case=standard size=4096 procs=16 rank=3 compute_time=0.082775400
+rank_metric strategy=static case=standard size=4096 procs=16 rank=4 compute_time=0.282628700
+rank_metric strategy=static case=standard size=4096 procs=16 rank=5 compute_time=0.730643500
+rank_metric strategy=static case=standard size=4096 procs=16 rank=6 compute_time=0.972366800
+rank_metric strategy=static case=standard size=4096 procs=16 rank=7 compute_time=1.285938400
+rank_metric strategy=static case=standard size=4096 procs=16 rank=8 compute_time=1.277459300
+rank_metric strategy=static case=standard size=4096 procs=16 rank=9 compute_time=0.981108400
+rank_metric strategy=static case=standard size=4096 procs=16 rank=10 compute_time=0.724089700
+rank_metric strategy=static case=standard size=4096 procs=16 rank=11 compute_time=0.283008300
+rank_metric strategy=static case=standard size=4096 procs=16 rank=12 compute_time=0.079260800
+rank_metric strategy=static case=standard size=4096 procs=16 rank=13 compute_time=0.008750500
+rank_metric strategy=static case=standard size=4096 procs=16 rank=14 compute_time=0.005644100
+rank_metric strategy=static case=standard size=4096 procs=16 rank=15 compute_time=0.006404400
+summary strategy=static case=standard size=4096 procs=16 compute_max=1.285938400 compute_min=0.005644100 gather=0.031302200 master_overhead=0.000000000 total=1.317240600 fbc=0.995610910 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 strong_scaling_cyclic_standard_4096_1.bin
+rank_metric strategy=cyclic case=standard size=4096 procs=1 rank=0 compute_time=6.418287400
+arquivo output_binaries/strong_scaling_cyclic_standard_4096_1.bin salvo com sucessosummary strategy=cyclic case=standard size=4096 procs=1 compute_max=6.418287400 compute_min=6.418287400 gather=0.013546900 master_overhead=0.016208600 total=6.448042900 fbc=0.000000000 write=0.564364000 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=1 rank=0 compute_time=6.415811000
+summary strategy=cyclic case=standard size=4096 procs=1 compute_max=6.415811000 compute_min=6.415811000 gather=0.011199800 master_overhead=0.015503500 total=6.442514300 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=1 rank=0 compute_time=6.426335100
+summary strategy=cyclic case=standard size=4096 procs=1 compute_max=6.426335100 compute_min=6.426335100 gather=0.012076400 master_overhead=0.015465200 total=6.453876700 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 strong_scaling_cyclic_standard_4096_2.bin
+rank_metric strategy=cyclic case=standard size=4096 procs=2 rank=0 compute_time=3.251171600
+rank_metric strategy=cyclic case=standard size=4096 procs=2 rank=1 compute_time=3.250371800
+arquivo output_binaries/strong_scaling_cyclic_standard_4096_2.bin salvo com sucessosummary strategy=cyclic case=standard size=4096 procs=2 compute_max=3.251171600 compute_min=3.250371800 gather=0.013559300 master_overhead=0.027545800 total=3.292276700 fbc=0.000246004 write=1.101908800 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=2 rank=0 compute_time=3.233166600
+rank_metric strategy=cyclic case=standard size=4096 procs=2 rank=1 compute_time=3.232244800
+summary strategy=cyclic case=standard size=4096 procs=2 compute_max=3.233166600 compute_min=3.232244800 gather=0.012372200 master_overhead=0.027918300 total=3.273457100 fbc=0.000285107 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=2 rank=0 compute_time=3.200964400
+rank_metric strategy=cyclic case=standard size=4096 procs=2 rank=1 compute_time=3.194305400
+summary strategy=cyclic case=standard size=4096 procs=2 compute_max=3.200964400 compute_min=3.194305400 gather=0.012238400 master_overhead=0.025415300 total=3.238618100 fbc=0.002080311 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 strong_scaling_cyclic_standard_4096_4.bin
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=0 compute_time=1.621512300
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=1 compute_time=1.619282100
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=2 compute_time=1.618906300
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=3 compute_time=1.620656400
+arquivo output_binaries/strong_scaling_cyclic_standard_4096_4.bin salvo com sucessosummary strategy=cyclic case=standard size=4096 procs=4 compute_max=1.621512300 compute_min=1.618906300 gather=0.014742400 master_overhead=0.025186700 total=1.661441400 fbc=0.001607142 write=0.605221700 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=0 compute_time=1.636005500
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=1 compute_time=1.634344300
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=2 compute_time=1.623627300
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=3 compute_time=1.627233700
+summary strategy=cyclic case=standard size=4096 procs=4 compute_max=1.636005500 compute_min=1.623627300 gather=0.015433800 master_overhead=0.026416800 total=1.677856100 fbc=0.007566111 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=0 compute_time=1.648582200
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=1 compute_time=1.637210900
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=2 compute_time=1.628775900
+rank_metric strategy=cyclic case=standard size=4096 procs=4 rank=3 compute_time=1.636834200
+summary strategy=cyclic case=standard size=4096 procs=4 compute_max=1.648582200 compute_min=1.628775900 gather=0.017687200 master_overhead=0.025808100 total=1.692077500 fbc=0.012014142 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 strong_scaling_cyclic_standard_4096_8.bin
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=0 compute_time=0.851500200
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=1 compute_time=0.853130800
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=2 compute_time=0.848595700
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=3 compute_time=0.843946000
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=4 compute_time=0.850638300
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=5 compute_time=0.853703600
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=6 compute_time=0.848055800
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=7 compute_time=0.846501000
+arquivo output_binaries/strong_scaling_cyclic_standard_4096_8.bin salvo com sucessosummary strategy=cyclic case=standard size=4096 procs=8 compute_max=0.853703600 compute_min=0.843946000 gather=0.019415500 master_overhead=0.027508200 total=0.900627300 fbc=0.011429728 write=0.284105500 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=0 compute_time=0.854076500
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=1 compute_time=0.846904500
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=2 compute_time=0.866395000
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=3 compute_time=0.850351600
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=4 compute_time=0.855753200
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=5 compute_time=0.848736500
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=6 compute_time=0.853491900
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=7 compute_time=0.854756300
+summary strategy=cyclic case=standard size=4096 procs=8 compute_max=0.866395000 compute_min=0.846904500 gather=0.025676400 master_overhead=0.028526300 total=0.920597700 fbc=0.022496090 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=0 compute_time=0.864340600
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=1 compute_time=0.851840500
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=2 compute_time=0.863488000
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=3 compute_time=0.852924600
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=4 compute_time=0.862500300
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=5 compute_time=0.859394800
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=6 compute_time=0.859318300
+rank_metric strategy=cyclic case=standard size=4096 procs=8 rank=7 compute_time=0.857511400
+summary strategy=cyclic case=standard size=4096 procs=8 compute_max=0.864340600 compute_min=0.851840500 gather=0.022034500 master_overhead=0.027719800 total=0.914094900 fbc=0.014462007 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 strong_scaling_cyclic_standard_4096_16.bin
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=0 compute_time=0.458745500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=1 compute_time=0.460087800
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=2 compute_time=0.474071700
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=3 compute_time=0.469816800
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=4 compute_time=0.464215800
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=5 compute_time=0.489723100
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=6 compute_time=0.474590400
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=7 compute_time=0.470622900
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=8 compute_time=0.502073500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=9 compute_time=0.485242700
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=10 compute_time=0.481682600
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=11 compute_time=0.479862600
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=12 compute_time=0.486223200
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=13 compute_time=0.501867500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=14 compute_time=0.475867600
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=15 compute_time=0.473918400
+arquivo output_binaries/strong_scaling_cyclic_standard_4096_16.bin salvo com sucessosummary strategy=cyclic case=standard size=4096 procs=16 compute_max=0.502073500 compute_min=0.458745500 gather=0.027333400 master_overhead=0.022513800 total=0.551920700 fbc=0.086298122 write=0.807381600 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=0 compute_time=0.497745400
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=1 compute_time=0.465976500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=2 compute_time=0.474122700
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=3 compute_time=0.470985300
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=4 compute_time=0.478666800
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=5 compute_time=0.500489800
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=6 compute_time=0.460712600
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=7 compute_time=0.465732600
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=8 compute_time=0.484768000
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=9 compute_time=0.479884900
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=10 compute_time=0.500567200
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=11 compute_time=0.479767700
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=12 compute_time=0.489475500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=13 compute_time=0.474624800
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=14 compute_time=0.485107200
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=15 compute_time=0.499870200
+summary strategy=cyclic case=standard size=4096 procs=16 compute_max=0.500567200 compute_min=0.460712600 gather=0.027638300 master_overhead=0.022089100 total=0.550294600 fbc=0.079618880 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=0 compute_time=0.473237500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=1 compute_time=0.478264300
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=2 compute_time=0.508797100
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=3 compute_time=0.487585500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=4 compute_time=0.481068100
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=5 compute_time=0.482127100
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=6 compute_time=0.491134500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=7 compute_time=0.514824400
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=8 compute_time=0.469238700
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=9 compute_time=0.474176100
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=10 compute_time=0.484893500
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=11 compute_time=0.469042700
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=12 compute_time=0.470701000
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=13 compute_time=0.515258600
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=14 compute_time=0.489007800
+rank_metric strategy=cyclic case=standard size=4096 procs=16 rank=15 compute_time=0.485263900
+summary strategy=cyclic case=standard size=4096 procs=16 compute_max=0.515258600 compute_min=0.469042700 gather=0.032902000 master_overhead=0.023262500 total=0.571423100 fbc=0.089694573 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 load_balance_static_seahorse_4096_16.bin
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=0 compute_time=0.188783600
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=1 compute_time=0.196349700
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=2 compute_time=0.214676900
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=3 compute_time=0.290892800
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=4 compute_time=0.273912500
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=5 compute_time=0.239089100
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=6 compute_time=0.253795900
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=7 compute_time=0.252279300
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=8 compute_time=0.222600500
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=9 compute_time=0.113205200
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=10 compute_time=0.097641600
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=11 compute_time=0.144062900
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=12 compute_time=0.113049400
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=13 compute_time=0.170662900
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=14 compute_time=0.206626400
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=15 compute_time=0.332188600
+arquivo output_binaries/load_balance_static_seahorse_4096_16.bin salvo com sucessosummary strategy=static case=seahorse size=4096 procs=16 compute_max=0.332188600 compute_min=0.097641600 gather=0.028318400 master_overhead=0.000000000 total=0.360507000 fbc=0.706065771 write=0.209268900 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=0 compute_time=0.186113300
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=1 compute_time=0.194583700
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=2 compute_time=0.219961500
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=3 compute_time=0.318846600
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=4 compute_time=0.248738800
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=5 compute_time=0.243069200
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=6 compute_time=0.257401500
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=7 compute_time=0.247923700
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=8 compute_time=0.229873900
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=9 compute_time=0.117140200
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=10 compute_time=0.098813800
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=11 compute_time=0.101527700
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=12 compute_time=0.101851500
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=13 compute_time=0.150434400
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=14 compute_time=0.212882700
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=15 compute_time=0.304345500
+summary strategy=static case=seahorse size=4096 procs=16 compute_max=0.318846600 compute_min=0.098813800 gather=0.034272000 master_overhead=0.000000000 total=0.353118600 fbc=0.690089843 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=0 compute_time=0.198861600
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=1 compute_time=0.191068800
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=2 compute_time=0.217519000
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=3 compute_time=0.294983100
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=4 compute_time=0.253197900
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=5 compute_time=0.246262500
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=6 compute_time=0.236363700
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=7 compute_time=0.247710200
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=8 compute_time=0.236599100
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=9 compute_time=0.121569300
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=10 compute_time=0.102066600
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=11 compute_time=0.097801900
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=12 compute_time=0.109475400
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=13 compute_time=0.145680700
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=14 compute_time=0.207978800
+rank_metric strategy=static case=seahorse size=4096 procs=16 rank=15 compute_time=0.322244500
+summary strategy=static case=seahorse size=4096 procs=16 compute_max=0.322244500 compute_min=0.097801900 gather=0.031286900 master_overhead=0.000000000 total=0.353531400 fbc=0.696497846 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 load_balance_cyclic_seahorse_4096_16.bin
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=0 compute_time=0.197135800
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=1 compute_time=0.208130000
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=2 compute_time=0.229768500
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=3 compute_time=0.205429500
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=4 compute_time=0.213909400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=5 compute_time=0.209262200
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=6 compute_time=0.206541900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=7 compute_time=0.208101000
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=8 compute_time=0.214433900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=9 compute_time=0.206279400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=10 compute_time=0.212558700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=11 compute_time=0.199577400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=12 compute_time=0.209050200
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=13 compute_time=0.201847400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=14 compute_time=0.206472900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=15 compute_time=0.205658700
+arquivo output_binaries/load_balance_cyclic_seahorse_4096_16.bin salvo com sucessosummary strategy=cyclic case=seahorse size=4096 procs=16 compute_max=0.229768500 compute_min=0.197135800 gather=0.032249000 master_overhead=0.026161100 total=0.288178600 fbc=0.142024255 write=0.174106300 output_written=1
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=0 compute_time=0.195565900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=1 compute_time=0.210981100
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=2 compute_time=0.195416100
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=3 compute_time=0.202597500
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=4 compute_time=0.204952400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=5 compute_time=0.200498700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=6 compute_time=0.199953400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=7 compute_time=0.196842400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=8 compute_time=0.219408000
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=9 compute_time=0.197567700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=10 compute_time=0.206608700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=11 compute_time=0.216151800
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=12 compute_time=0.214445700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=13 compute_time=0.216935700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=14 compute_time=0.228181700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=15 compute_time=0.222555900
+summary strategy=cyclic case=seahorse size=4096 procs=16 compute_max=0.228181700 compute_min=0.195416100 gather=0.026134700 master_overhead=0.021464300 total=0.275780700 fbc=0.143594337 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=0 compute_time=0.198325500
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=1 compute_time=0.203278700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=2 compute_time=0.202510300
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=3 compute_time=0.201456100
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=4 compute_time=0.227314800
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=5 compute_time=0.225154600
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=6 compute_time=0.201616100
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=7 compute_time=0.196327400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=8 compute_time=0.205368300
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=9 compute_time=0.233372900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=10 compute_time=0.221393200
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=11 compute_time=0.196488000
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=12 compute_time=0.200650700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=13 compute_time=0.198713900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=14 compute_time=0.213282200
+rank_metric strategy=cyclic case=seahorse size=4096 procs=16 rank=15 compute_time=0.207260400
+summary strategy=cyclic case=seahorse size=4096 procs=16 compute_max=0.233372900 compute_min=0.196327400 gather=0.025539100 master_overhead=0.022893600 total=0.281805600 fbc=0.158739511 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=1 rank=0 compute_time=6.438244500
+summary strategy=static case=standard size=4096 procs=1 compute_max=6.438244500 compute_min=6.438244500 gather=0.008963300 master_overhead=0.000000000 total=6.447207800 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=1 rank=0 compute_time=6.431022100
+summary strategy=static case=standard size=4096 procs=1 compute_max=6.431022100 compute_min=6.431022100 gather=0.011235100 master_overhead=0.000000000 total=6.442257200 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 4096 -
+rank_metric strategy=static case=standard size=4096 procs=1 rank=0 compute_time=6.412034200
+summary strategy=static case=standard size=4096 procs=1 compute_max=6.412034200 compute_min=6.412034200 gather=0.008716700 master_overhead=0.000000000 total=6.420750900 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 8192 -
+rank_metric strategy=static case=standard size=8192 procs=4 rank=0 compute_time=0.344287700
+rank_metric strategy=static case=standard size=8192 procs=4 rank=1 compute_time=13.118476100
+rank_metric strategy=static case=standard size=8192 procs=4 rank=2 compute_time=13.160374700
+rank_metric strategy=static case=standard size=8192 procs=4 rank=3 compute_time=0.343065900
+summary strategy=static case=standard size=8192 procs=4 compute_max=13.160374700 compute_min=0.343065900 gather=0.087018900 master_overhead=0.000000000 total=13.247393600 fbc=0.973931905 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 8192 -
+rank_metric strategy=static case=standard size=8192 procs=4 rank=0 compute_time=0.349007800
+rank_metric strategy=static case=standard size=8192 procs=4 rank=1 compute_time=13.107113800
+rank_metric strategy=static case=standard size=8192 procs=4 rank=2 compute_time=13.142258900
+rank_metric strategy=static case=standard size=8192 procs=4 rank=3 compute_time=0.345510400
+summary strategy=static case=standard size=8192 procs=4 compute_max=13.142258900 compute_min=0.345510400 gather=0.069177800 master_overhead=0.000000000 total=13.211436700 fbc=0.973709969 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 8192 -
+rank_metric strategy=static case=standard size=8192 procs=4 rank=0 compute_time=0.338778600
+rank_metric strategy=static case=standard size=8192 procs=4 rank=1 compute_time=13.129905900
+rank_metric strategy=static case=standard size=8192 procs=4 rank=2 compute_time=13.165472900
+rank_metric strategy=static case=standard size=8192 procs=4 rank=3 compute_time=0.341329000
+summary strategy=static case=standard size=8192 procs=4 compute_max=13.165472900 compute_min=0.338778600 gather=0.070165500 master_overhead=0.000000000 total=13.235638400 fbc=0.974267647 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 16384 -
+rank_metric strategy=static case=standard size=16384 procs=16 rank=0 compute_time=0.092668300
+rank_metric strategy=static case=standard size=16384 procs=16 rank=1 compute_time=0.104047100
+rank_metric strategy=static case=standard size=16384 procs=16 rank=2 compute_time=0.162215800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=3 compute_time=1.337258000
+rank_metric strategy=static case=standard size=16384 procs=16 rank=4 compute_time=4.550273300
+rank_metric strategy=static case=standard size=16384 procs=16 rank=5 compute_time=12.048158100
+rank_metric strategy=static case=standard size=16384 procs=16 rank=6 compute_time=15.993534200
+rank_metric strategy=static case=standard size=16384 procs=16 rank=7 compute_time=21.291554400
+rank_metric strategy=static case=standard size=16384 procs=16 rank=8 compute_time=21.305149600
+rank_metric strategy=static case=standard size=16384 procs=16 rank=9 compute_time=16.015204900
+rank_metric strategy=static case=standard size=16384 procs=16 rank=10 compute_time=12.084735600
+rank_metric strategy=static case=standard size=16384 procs=16 rank=11 compute_time=4.627395400
+rank_metric strategy=static case=standard size=16384 procs=16 rank=12 compute_time=1.344387300
+rank_metric strategy=static case=standard size=16384 procs=16 rank=13 compute_time=0.169809800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=14 compute_time=0.110171400
+rank_metric strategy=static case=standard size=16384 procs=16 rank=15 compute_time=0.093940300
+summary strategy=static case=standard size=16384 procs=16 compute_max=21.305149600 compute_min=0.092668300 gather=0.634310400 master_overhead=0.000000000 total=21.939460000 fbc=0.995650427 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 16384 -
+rank_metric strategy=static case=standard size=16384 procs=16 rank=0 compute_time=0.093490600
+rank_metric strategy=static case=standard size=16384 procs=16 rank=1 compute_time=0.104930800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=2 compute_time=0.151773100
+rank_metric strategy=static case=standard size=16384 procs=16 rank=3 compute_time=1.348410800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=4 compute_time=4.662951000
+rank_metric strategy=static case=standard size=16384 procs=16 rank=5 compute_time=12.184026600
+rank_metric strategy=static case=standard size=16384 procs=16 rank=6 compute_time=16.095603800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=7 compute_time=21.365940700
+rank_metric strategy=static case=standard size=16384 procs=16 rank=8 compute_time=21.398832800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=9 compute_time=16.158539100
+rank_metric strategy=static case=standard size=16384 procs=16 rank=10 compute_time=12.150308000
+rank_metric strategy=static case=standard size=16384 procs=16 rank=11 compute_time=4.669041100
+rank_metric strategy=static case=standard size=16384 procs=16 rank=12 compute_time=1.412814200
+rank_metric strategy=static case=standard size=16384 procs=16 rank=13 compute_time=0.167284300
+rank_metric strategy=static case=standard size=16384 procs=16 rank=14 compute_time=0.109248500
+rank_metric strategy=static case=standard size=16384 procs=16 rank=15 compute_time=0.107406300
+summary strategy=static case=standard size=16384 procs=16 compute_max=21.398832800 compute_min=0.093490600 gather=0.364787400 master_overhead=0.000000000 total=21.763620200 fbc=0.995631042 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static standard 16384 -
+rank_metric strategy=static case=standard size=16384 procs=16 rank=0 compute_time=0.101576900
+rank_metric strategy=static case=standard size=16384 procs=16 rank=1 compute_time=0.114936500
+rank_metric strategy=static case=standard size=16384 procs=16 rank=2 compute_time=0.139135800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=3 compute_time=1.349655500
+rank_metric strategy=static case=standard size=16384 procs=16 rank=4 compute_time=4.574153200
+rank_metric strategy=static case=standard size=16384 procs=16 rank=5 compute_time=12.019218600
+rank_metric strategy=static case=standard size=16384 procs=16 rank=6 compute_time=15.979746100
+rank_metric strategy=static case=standard size=16384 procs=16 rank=7 compute_time=21.162173000
+rank_metric strategy=static case=standard size=16384 procs=16 rank=8 compute_time=21.207650800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=9 compute_time=15.928409900
+rank_metric strategy=static case=standard size=16384 procs=16 rank=10 compute_time=12.027491300
+rank_metric strategy=static case=standard size=16384 procs=16 rank=11 compute_time=4.646632800
+rank_metric strategy=static case=standard size=16384 procs=16 rank=12 compute_time=1.390884900
+rank_metric strategy=static case=standard size=16384 procs=16 rank=13 compute_time=0.175045600
+rank_metric strategy=static case=standard size=16384 procs=16 rank=14 compute_time=0.105306400
+rank_metric strategy=static case=standard size=16384 procs=16 rank=15 compute_time=0.106358600
+summary strategy=static case=standard size=16384 procs=16 compute_max=21.207650800 compute_min=0.101576900 gather=0.424081600 master_overhead=0.000000000 total=21.631732400 fbc=0.995210365 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=1 rank=0 compute_time=6.484665000
+summary strategy=cyclic case=standard size=4096 procs=1 compute_max=6.484665000 compute_min=6.484665000 gather=0.012302800 master_overhead=0.022260900 total=6.519228700 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=1 rank=0 compute_time=6.435573000
+summary strategy=cyclic case=standard size=4096 procs=1 compute_max=6.435573000 compute_min=6.435573000 gather=0.008740200 master_overhead=0.011127300 total=6.455440500 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 4096 -
+rank_metric strategy=cyclic case=standard size=4096 procs=1 rank=0 compute_time=6.491594600
+summary strategy=cyclic case=standard size=4096 procs=1 compute_max=6.491594600 compute_min=6.491594600 gather=0.009381900 master_overhead=0.012163600 total=6.513140100 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 8192 -
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=0 compute_time=6.725437100
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=1 compute_time=6.701995400
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=2 compute_time=6.734639200
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=3 compute_time=6.723871100
+summary strategy=cyclic case=standard size=8192 procs=4 compute_max=6.734639200 compute_min=6.701995400 gather=0.068774000 master_overhead=0.099703100 total=6.903116300 fbc=0.004847149 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 8192 -
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=0 compute_time=6.787453500
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=1 compute_time=6.782583100
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=2 compute_time=6.764150600
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=3 compute_time=6.788709600
+summary strategy=cyclic case=standard size=8192 procs=4 compute_max=6.788709600 compute_min=6.764150600 gather=0.064334300 master_overhead=0.104734400 total=6.957778300 fbc=0.003617624 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 8192 -
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=0 compute_time=6.741135200
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=1 compute_time=6.796373600
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=2 compute_time=6.744605700
+rank_metric strategy=cyclic case=standard size=8192 procs=4 rank=3 compute_time=6.762212600
+summary strategy=cyclic case=standard size=8192 procs=4 compute_max=6.796373600 compute_min=6.741135200 gather=0.062317500 master_overhead=0.109450400 total=6.968141500 fbc=0.008127629 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 16384 -
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=0 compute_time=8.220284300
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=1 compute_time=7.942862700
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=2 compute_time=8.463187100
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=3 compute_time=7.952954600
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=4 compute_time=8.155858200
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=5 compute_time=7.819478800
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=6 compute_time=7.947971900
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=7 compute_time=7.520324800
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=8 compute_time=8.292209100
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=9 compute_time=7.753487500
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=10 compute_time=8.062425800
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=11 compute_time=7.948633600
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=12 compute_time=7.725951600
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=13 compute_time=8.071477900
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=14 compute_time=7.939244800
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=15 compute_time=7.473208800
+summary strategy=cyclic case=standard size=16384 procs=16 compute_max=8.463187100 compute_min=7.473208800 gather=0.463610100 master_overhead=0.297601300 total=9.224398500 fbc=0.116974644 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 16384 -
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=0 compute_time=7.654942400
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=1 compute_time=7.354675400
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=2 compute_time=7.582093000
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=3 compute_time=7.782572400
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=4 compute_time=7.883157900
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=5 compute_time=7.963936100
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=6 compute_time=7.809020900
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=7 compute_time=7.547543700
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=8 compute_time=7.345882700
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=9 compute_time=7.618487500
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=10 compute_time=7.367983800
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=11 compute_time=7.580431100
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=12 compute_time=8.033640000
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=13 compute_time=7.619129900
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=14 compute_time=7.683027800
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=15 compute_time=7.696868500
+summary strategy=cyclic case=standard size=16384 procs=16 compute_max=8.033640000 compute_min=7.345882700 gather=0.390288800 master_overhead=0.233689200 total=8.657618000 fbc=0.085609674 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 16 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic standard 16384 -
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=0 compute_time=7.678376000
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=1 compute_time=7.488814200
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=2 compute_time=7.494817500
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=3 compute_time=7.559538300
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=4 compute_time=7.344191600
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=5 compute_time=7.654496900
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=6 compute_time=7.341888600
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=7 compute_time=7.791802900
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=8 compute_time=7.620210500
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=9 compute_time=7.494944200
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=10 compute_time=7.333394500
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=11 compute_time=7.877078400
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=12 compute_time=7.341139800
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=13 compute_time=7.648322500
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=14 compute_time=7.837018800
+rank_metric strategy=cyclic case=standard size=16384 procs=16 rank=15 compute_time=7.775299900
+summary strategy=cyclic case=standard size=16384 procs=16 compute_max=7.877078400 compute_min=7.333394500 gather=0.401552400 master_overhead=0.263186000 total=8.541816800 fbc=0.069021009 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" static standard 5792 -
+rank_metric strategy=static case=standard size=5792 procs=2 rank=0 compute_time=7.029067000 load_factor=0.998363369
+rank_metric strategy=static case=standard size=5792 procs=2 rank=1 compute_time=7.052112700 load_factor=1.001636631
+summary strategy=static case=standard size=5792 procs=2 compute_max=7.052112700 compute_min=7.029067000 compute_avg=7.040589850 gather=0.048559600 master_overhead=0.000000000 total=7.100672300 fbc=1.001636631 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" static standard 5792 -
+rank_metric strategy=static case=standard size=5792 procs=2 rank=0 compute_time=7.011574200 load_factor=0.997753289
+rank_metric strategy=static case=standard size=5792 procs=2 rank=1 compute_time=7.043151100 load_factor=1.002246711
+summary strategy=static case=standard size=5792 procs=2 compute_max=7.043151100 compute_min=7.011574200 compute_avg=7.027362650 gather=0.049489600 master_overhead=0.000000000 total=7.092640700 fbc=1.002246711 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" static standard 5792 -
+rank_metric strategy=static case=standard size=5792 procs=2 rank=0 compute_time=6.999419800 load_factor=0.997582842
+rank_metric strategy=static case=standard size=5792 procs=2 rank=1 compute_time=7.033339200 load_factor=1.002417158
+summary strategy=static case=standard size=5792 procs=2 compute_max=7.033339200 compute_min=6.999419800 compute_avg=7.016379500 gather=0.041669800 master_overhead=0.000000000 total=7.075009000 fbc=1.002417158 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" static standard 11584 -
+rank_metric strategy=static case=standard size=11584 procs=8 rank=0 compute_time=0.080919900 load_factor=0.011290634
+rank_metric strategy=static case=standard size=11584 procs=8 rank=1 compute_time=0.753840800 load_factor=0.105182294
+rank_metric strategy=static case=standard size=11584 procs=8 rank=2 compute_time=8.549298200 load_factor=1.192870959
+rank_metric strategy=static case=standard size=11584 procs=8 rank=3 compute_time=19.290905900 load_factor=2.691631626
+rank_metric strategy=static case=standard size=11584 procs=8 rank=4 compute_time=19.304867600 load_factor=2.693579682
+rank_metric strategy=static case=standard size=11584 procs=8 rank=5 compute_time=8.548354000 load_factor=1.192739216
+rank_metric strategy=static case=standard size=11584 procs=8 rank=6 compute_time=0.728296300 load_factor=0.101618108
+rank_metric strategy=static case=standard size=11584 procs=8 rank=7 compute_time=0.079463900 load_factor=0.011087481
+summary strategy=static case=standard size=11584 procs=8 compute_max=19.304867600 compute_min=0.079463900 compute_avg=7.166993325 gather=0.361476100 master_overhead=0.000000000 total=19.666343700 fbc=2.693579682 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" static standard 11584 -
+rank_metric strategy=static case=standard size=11584 procs=8 rank=0 compute_time=0.092765600 load_factor=0.012963107
+rank_metric strategy=static case=standard size=11584 procs=8 rank=1 compute_time=0.779797500 load_factor=0.108969256
+rank_metric strategy=static case=standard size=11584 procs=8 rank=2 compute_time=8.647251600 load_factor=1.208370855
+rank_metric strategy=static case=standard size=11584 procs=8 rank=3 compute_time=19.082099600 load_factor=2.666541240
+rank_metric strategy=static case=standard size=11584 procs=8 rank=4 compute_time=19.113878700 load_factor=2.670982066
+rank_metric strategy=static case=standard size=11584 procs=8 rank=5 compute_time=8.645903600 load_factor=1.208182485
+rank_metric strategy=static case=standard size=11584 procs=8 rank=6 compute_time=0.788856100 load_factor=0.110235109
+rank_metric strategy=static case=standard size=11584 procs=8 rank=7 compute_time=0.098438800 load_factor=0.013755882
+summary strategy=static case=standard size=11584 procs=8 compute_max=19.113878700 compute_min=0.092765600 compute_avg=7.156123937 gather=0.300073700 master_overhead=0.000000000 total=19.413952400 fbc=2.670982066 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" static standard 11584 -
+rank_metric strategy=static case=standard size=11584 procs=8 rank=0 compute_time=0.094678000 load_factor=0.013358696
+rank_metric strategy=static case=standard size=11584 procs=8 rank=1 compute_time=0.769719700 load_factor=0.108604447
+rank_metric strategy=static case=standard size=11584 procs=8 rank=2 compute_time=8.650028100 load_factor=1.220485219
+rank_metric strategy=static case=standard size=11584 procs=8 rank=3 compute_time=18.825358000 load_factor=2.656184572
+rank_metric strategy=static case=standard size=11584 procs=8 rank=4 compute_time=18.838971000 load_factor=2.658105313
+rank_metric strategy=static case=standard size=11584 procs=8 rank=5 compute_time=8.637744800 load_factor=1.218752093
+rank_metric strategy=static case=standard size=11584 procs=8 rank=6 compute_time=0.804405800 load_factor=0.113498520
+rank_metric strategy=static case=standard size=11584 procs=8 rank=7 compute_time=0.078040000 load_factor=0.011011140
+summary strategy=static case=standard size=11584 procs=8 compute_max=18.838971000 compute_min=0.078040000 compute_avg=7.087368175 gather=0.218331000 master_overhead=0.000000000 total=19.057302000 fbc=2.658105313 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" cyclic standard 5792 -
+rank_metric strategy=cyclic case=standard size=5792 procs=2 rank=0 compute_time=6.935738600 load_factor=1.000026869
+rank_metric strategy=cyclic case=standard size=5792 procs=2 rank=1 compute_time=6.935365900 load_factor=0.999973131
+summary strategy=cyclic case=standard size=5792 procs=2 compute_max=6.935738600 compute_min=6.935365900 compute_avg=6.935552250 gather=0.040158600 master_overhead=0.065144100 total=7.041041300 fbc=1.000026869 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" cyclic standard 5792 -
+rank_metric strategy=cyclic case=standard size=5792 procs=2 rank=0 compute_time=6.915973100 load_factor=0.999746759
+rank_metric strategy=cyclic case=standard size=5792 procs=2 rank=1 compute_time=6.919476800 load_factor=1.000253241
+summary strategy=cyclic case=standard size=5792 procs=2 compute_max=6.919476800 compute_min=6.915973100 compute_avg=6.917724950 gather=0.053942100 master_overhead=0.068759700 total=7.042178600 fbc=1.000253241 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" cyclic standard 5792 -
+rank_metric strategy=cyclic case=standard size=5792 procs=2 rank=0 compute_time=6.833734700 load_factor=1.000593791
+rank_metric strategy=cyclic case=standard size=5792 procs=2 rank=1 compute_time=6.825623900 load_factor=0.999406209
+summary strategy=cyclic case=standard size=5792 procs=2 compute_max=6.833734700 compute_min=6.825623900 compute_avg=6.829679300 gather=0.038376000 master_overhead=0.063062000 total=6.935172700 fbc=1.000593791 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" cyclic standard 11584 -
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=0 compute_time=7.262969800 load_factor=0.995652693
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=1 compute_time=7.309424600 load_factor=1.002021003
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=2 compute_time=7.310506500 load_factor=1.002169317
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=3 compute_time=7.276604200 load_factor=0.997521780
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=4 compute_time=7.310324700 load_factor=1.002144394
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=5 compute_time=7.280264500 load_factor=0.998023557
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=6 compute_time=7.314457300 load_factor=1.002710917
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=7 compute_time=7.292904600 load_factor=0.999756340
+summary strategy=cyclic case=standard size=11584 procs=8 compute_max=7.314457300 compute_min=7.262969800 compute_avg=7.294682025 gather=0.268853700 master_overhead=0.212428400 total=7.795739400 fbc=1.002710917 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" cyclic standard 11584 -
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=0 compute_time=7.404398100 load_factor=1.005531023
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=1 compute_time=7.373488700 load_factor=1.001333469
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=2 compute_time=7.367651900 load_factor=1.000540821
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=3 compute_time=7.355357500 load_factor=0.998871218
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=4 compute_time=7.353109600 load_factor=0.998565949
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=5 compute_time=7.349618000 load_factor=0.998091784
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=6 compute_time=7.344475100 load_factor=0.997393368
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=7 compute_time=7.361256900 load_factor=0.999672368
+summary strategy=cyclic case=standard size=11584 procs=8 compute_max=7.404398100 compute_min=7.344475100 compute_avg=7.363669475 gather=0.273733400 master_overhead=0.225145200 total=7.903276700 fbc=1.005531023 write=0.000000000 output_written=0
+
+[exit=0]
+
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 "C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe" cyclic standard 11584 -
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=0 compute_time=7.562346500 load_factor=1.000043685
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=1 compute_time=7.580450500 load_factor=1.002437756
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=2 compute_time=7.517500800 load_factor=0.994113296
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=3 compute_time=7.570564100 load_factor=1.001130380
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=4 compute_time=7.562067900 load_factor=1.000006843
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=5 compute_time=7.558552600 load_factor=0.999541981
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=6 compute_time=7.575170200 load_factor=1.001739490
+rank_metric strategy=cyclic case=standard size=11584 procs=8 rank=7 compute_time=7.569476600 load_factor=1.000986569
+summary strategy=cyclic case=standard size=11584 procs=8 compute_max=7.580450500 compute_min=7.517500800 compute_avg=7.562016150 gather=0.361002800 master_overhead=0.292693800 total=8.234147100 fbc=1.002437756 write=0.000000000 output_written=0
+
+[exit=0]
+
+
+
+[additional load-balance scaling runs]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=1 rank=0 compute_time=2.935852800
+summary strategy=static case=seahorse size=4096 procs=1 compute_max=2.935852800 compute_min=2.935852800 gather=0.015028700 master_overhead=0.000000000 total=2.950881500 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=1 rank=0 compute_time=2.936479400
+summary strategy=static case=seahorse size=4096 procs=1 compute_max=2.936479400 compute_min=2.936479400 gather=0.018803600 master_overhead=0.000000000 total=2.955283000 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=1 rank=0 compute_time=2.932282200
+summary strategy=static case=seahorse size=4096 procs=1 compute_max=2.932282200 compute_min=2.932282200 gather=0.019447700 master_overhead=0.000000000 total=2.951729900 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=2 rank=0 compute_time=1.779944200
+rank_metric strategy=static case=seahorse size=4096 procs=2 rank=1 compute_time=1.194224800
+summary strategy=static case=seahorse size=4096 procs=2 compute_max=1.779944200 compute_min=1.194224800 gather=0.023929800 master_overhead=0.000000000 total=1.803874000 fbc=0.329066158 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=2 rank=0 compute_time=1.761170400
+rank_metric strategy=static case=seahorse size=4096 procs=2 rank=1 compute_time=1.187990900
+summary strategy=static case=seahorse size=4096 procs=2 compute_max=1.761170400 compute_min=1.187990900 gather=0.019536200 master_overhead=0.000000000 total=1.780706600 fbc=0.325453744 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=2 rank=0 compute_time=1.761315500
+rank_metric strategy=static case=seahorse size=4096 procs=2 rank=1 compute_time=1.187960600
+summary strategy=static case=seahorse size=4096 procs=2 compute_max=1.761315500 compute_min=1.187960600 gather=0.017865200 master_overhead=0.000000000 total=1.779180700 fbc=0.325526517 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=0 compute_time=0.848276100
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=1 compute_time=0.935122800
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=2 compute_time=0.492904400
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=3 compute_time=0.728680900
+summary strategy=static case=seahorse size=4096 procs=4 compute_max=0.935122800 compute_min=0.492904400 gather=0.023577800 master_overhead=0.000000000 total=0.958700600 fbc=0.472898747 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=0 compute_time=0.855123300
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=1 compute_time=0.938839200
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=2 compute_time=0.489854100
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=3 compute_time=0.725171000
+summary strategy=static case=seahorse size=4096 procs=4 compute_max=0.938839200 compute_min=0.489854100 gather=0.025815900 master_overhead=0.000000000 total=0.964655100 fbc=0.478234292 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=0 compute_time=0.857090700
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=1 compute_time=0.943235500
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=2 compute_time=0.499229400
+rank_metric strategy=static case=seahorse size=4096 procs=4 rank=3 compute_time=0.722588600
+summary strategy=static case=seahorse size=4096 procs=4 compute_max=0.943235500 compute_min=0.499229400 gather=0.024693700 master_overhead=0.000000000 total=0.967929200 fbc=0.470726664 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=0 compute_time=0.367874200
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=1 compute_time=0.509440300
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=2 compute_time=0.485593400
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=3 compute_time=0.475888500
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=4 compute_time=0.331865800
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=5 compute_time=0.189581600
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=6 compute_time=0.241576700
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=7 compute_time=0.510407000
+summary strategy=static case=seahorse size=4096 procs=8 compute_max=0.510407000 compute_min=0.189581600 gather=0.032988400 master_overhead=0.000000000 total=0.543395400 fbc=0.628567790 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=0 compute_time=0.375174400
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=1 compute_time=0.512790200
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=2 compute_time=0.487798300
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=3 compute_time=0.484895600
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=4 compute_time=0.327840000
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=5 compute_time=0.196935300
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=6 compute_time=0.241386300
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=7 compute_time=0.511318700
+summary strategy=static case=seahorse size=4096 procs=8 compute_max=0.512790200 compute_min=0.196935300 gather=0.027978400 master_overhead=0.000000000 total=0.540768600 fbc=0.615953464 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe static seahorse 4096 -
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=0 compute_time=0.370067000
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=1 compute_time=0.512737800
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=2 compute_time=0.489812300
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=3 compute_time=0.485368400
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=4 compute_time=0.324437500
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=5 compute_time=0.196119900
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=6 compute_time=0.244853800
+rank_metric strategy=static case=seahorse size=4096 procs=8 rank=7 compute_time=0.518718400
+summary strategy=static case=seahorse size=4096 procs=8 compute_max=0.518718400 compute_min=0.196119900 gather=0.031598000 master_overhead=0.000000000 total=0.550316400 fbc=0.621914511 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=1 rank=0 compute_time=2.939802900
+summary strategy=cyclic case=seahorse size=4096 procs=1 compute_max=2.939802900 compute_min=2.939802900 gather=0.013554300 master_overhead=0.024374100 total=2.977731300 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=1 rank=0 compute_time=2.936911800
+summary strategy=cyclic case=seahorse size=4096 procs=1 compute_max=2.936911800 compute_min=2.936911800 gather=0.013046600 master_overhead=0.024083300 total=2.974041700 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 1 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=1 rank=0 compute_time=2.949320100
+summary strategy=cyclic case=seahorse size=4096 procs=1 compute_max=2.949320100 compute_min=2.949320100 gather=0.013946600 master_overhead=0.023331500 total=2.986598200 fbc=0.000000000 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=2 rank=0 compute_time=1.476031900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=2 rank=1 compute_time=1.477402300
+summary strategy=cyclic case=seahorse size=4096 procs=2 compute_max=1.477402300 compute_min=1.476031900 gather=0.019704000 master_overhead=0.033002500 total=1.530108800 fbc=0.000927574 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=2 rank=0 compute_time=1.494766000
+rank_metric strategy=cyclic case=seahorse size=4096 procs=2 rank=1 compute_time=1.496899300
+summary strategy=cyclic case=seahorse size=4096 procs=2 compute_max=1.496899300 compute_min=1.494766000 gather=0.018213100 master_overhead=0.033381800 total=1.548494200 fbc=0.001425146 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 2 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=2 rank=0 compute_time=1.472911800
+rank_metric strategy=cyclic case=seahorse size=4096 procs=2 rank=1 compute_time=1.471819400
+summary strategy=cyclic case=seahorse size=4096 procs=2 compute_max=1.472911800 compute_min=1.471819400 gather=0.018049400 master_overhead=0.033025100 total=1.523986300 fbc=0.000741660 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=0 compute_time=0.759514600
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=1 compute_time=0.756443200
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=2 compute_time=0.762078400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=3 compute_time=0.764011700
+summary strategy=cyclic case=seahorse size=4096 procs=4 compute_max=0.764011700 compute_min=0.756443200 gather=0.021629000 master_overhead=0.033101000 total=0.818741700 fbc=0.009906262 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=0 compute_time=0.754642400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=1 compute_time=0.750322800
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=2 compute_time=0.757233800
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=3 compute_time=0.758825400
+summary strategy=cyclic case=seahorse size=4096 procs=4 compute_max=0.758825400 compute_min=0.750322800 gather=0.023060600 master_overhead=0.033476800 total=0.815362800 fbc=0.011204949 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 4 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=0 compute_time=0.764975300
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=1 compute_time=0.762431200
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=2 compute_time=0.757464100
+rank_metric strategy=cyclic case=seahorse size=4096 procs=4 rank=3 compute_time=0.770550900
+summary strategy=cyclic case=seahorse size=4096 procs=4 compute_max=0.770550900 compute_min=0.757464100 gather=0.024924500 master_overhead=0.033162000 total=0.828637400 fbc=0.016983693 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=0 compute_time=0.394342700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=1 compute_time=0.392359000
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=2 compute_time=0.396083900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=3 compute_time=0.391261700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=4 compute_time=0.399823600
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=5 compute_time=0.388678300
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=6 compute_time=0.393077900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=7 compute_time=0.392534200
+summary strategy=cyclic case=seahorse size=4096 procs=8 compute_max=0.399823600 compute_min=0.388678300 gather=0.029178400 master_overhead=0.034630900 total=0.463632900 fbc=0.027875543 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=0 compute_time=0.397365200
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=1 compute_time=0.399970200
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=2 compute_time=0.389177700
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=3 compute_time=0.392213500
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=4 compute_time=0.393426400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=5 compute_time=0.394586900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=6 compute_time=0.398411500
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=7 compute_time=0.390704700
+summary strategy=cyclic case=seahorse size=4096 procs=8 compute_max=0.399970200 compute_min=0.389177700 gather=0.030353900 master_overhead=0.034562000 total=0.464886100 fbc=0.026983260 write=0.000000000 output_written=0
+
+[exit=0]
+> "C:\Program Files\Microsoft MPI\Bin\mpiexec.exe" -n 8 C:\Users\lacer\AppData\Local\Temp\codex-mandelbrot-mpi-strict-01a185a3\Release\mandelbrot_mpi.exe cyclic seahorse 4096 -
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=0 compute_time=0.394455000
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=1 compute_time=0.398052900
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=2 compute_time=0.393829600
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=3 compute_time=0.396649000
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=4 compute_time=0.397439300
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=5 compute_time=0.394693400
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=6 compute_time=0.397966300
+rank_metric strategy=cyclic case=seahorse size=4096 procs=8 rank=7 compute_time=0.398037200
+summary strategy=cyclic case=seahorse size=4096 procs=8 compute_max=0.398052900 compute_min=0.393829600 gather=0.029546300 master_overhead=0.035880800 total=0.463480000 fbc=0.010609896 write=0.000000000 output_written=0
+
+[exit=0]

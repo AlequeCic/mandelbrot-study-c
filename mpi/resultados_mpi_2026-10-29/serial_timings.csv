@@ -1,0 +1,7 @@
+case,size,rep,compute_s,write_s,output_written
+standard,4096,1,6.402149916,1.111296654,1
+standard,4096,2,6.407307148,0.0,0
+standard,4096,3,6.367323637,0.0,0
+seahorse,4096,1,2.777816057,0.213001251,1
+seahorse,4096,2,2.757233858,0.0,0
+seahorse,4096,3,2.748590708,0.0,0

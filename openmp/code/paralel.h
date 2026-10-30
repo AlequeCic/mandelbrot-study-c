@@ -10,6 +10,9 @@ typedef struct {
     long long max_thread_iterations;
     long long min_thread_iterations;
     double avg_thread_iterations;
+    double min_thread_seconds;
+    double max_thread_seconds;
+    double avg_thread_seconds;
     double load_balance_factor;
 } parallel_stats_t;
 

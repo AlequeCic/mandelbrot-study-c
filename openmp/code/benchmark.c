@@ -166,11 +166,13 @@ static int compare_and_record(FILE* correctness_file, FILE* balance_file,
 
     if (include_balance) {
         fprintf(balance_file,
-                "%s,%s,%d,%d,%d,%lld,%lld,%lld,%.3f,%.9f\n",
+                "%s,%s,%d,%d,%d,%lld,%lld,%lld,%.3f,%.9f,%.9f,%.9f,%.9f\n",
                 test_case->name, policy, chunk, stats.requested_threads,
                 stats.used_threads, stats.total_iterations,
                 stats.min_thread_iterations, stats.max_thread_iterations,
-                stats.avg_thread_iterations, stats.load_balance_factor);
+                stats.avg_thread_iterations, stats.min_thread_seconds,
+                stats.max_thread_seconds, stats.avg_thread_seconds,
+                stats.load_balance_factor);
     }
     return result;
 }
@@ -358,7 +360,7 @@ int main(int argc, char* argv[]) {
     fprintf(correctness_file,
             "case,policy,chunk,threads,used_threads,different_pixels,max_abs_difference,allowed_different_pixels,allowed_max_abs_difference,status\n");
     fprintf(balance_file,
-            "case,policy,chunk,requested_threads,used_threads,total_iterations,min_thread_iterations,max_thread_iterations,avg_thread_iterations,load_balance_factor\n");
+            "case,policy,chunk,requested_threads,used_threads,total_iterations,min_thread_iterations,max_thread_iterations,avg_thread_iterations,min_thread_seconds,max_thread_seconds,avg_thread_seconds,load_balance_factor\n");
     if (weak_file != NULL) {
         fprintf(weak_file,
                 "threads,width,height,pixels,policy,chunk,rep,seconds\n");

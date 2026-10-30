@@ -1,13 +1,15 @@
 /* OpenMP Mandelbrot escape-time implementation. */
 
 #include "paralel.h"
+#include "../../common/load_balance.h"
 
 #include <limits.h>
 
 typedef struct {
     long long iterations;
+    double seconds;
     int rows;
-    char padding[64 - sizeof(long long) - sizeof(int)];
+    char padding[64 - sizeof(long long) - sizeof(double) - sizeof(int)];
 } thread_load_t;
 
 static inline int calculate_escape_time(double pos_x, double pos_y,
@@ -55,6 +57,10 @@ static inline int calculate_escape_time(double pos_x, double pos_y,
 #define OMP_FOR_STATIC_DEFAULT _Pragma("omp for schedule(static)")
 #define OMP_FOR_DYNAMIC _Pragma("omp for schedule(dynamic, chunk)")
 #define OMP_FOR_GUIDED _Pragma("omp for schedule(guided, chunk)")
+#define OMP_FOR_STATIC_NOWAIT _Pragma("omp for schedule(static, chunk) nowait")
+#define OMP_FOR_STATIC_DEFAULT_NOWAIT _Pragma("omp for schedule(static) nowait")
+#define OMP_FOR_DYNAMIC_NOWAIT _Pragma("omp for schedule(dynamic, chunk) nowait")
+#define OMP_FOR_GUIDED_NOWAIT _Pragma("omp for schedule(guided, chunk) nowait")
 #define OMP_PARALLEL_FOR_STATIC _Pragma("omp parallel for schedule(static, chunk)")
 #define OMP_PARALLEL_FOR_STATIC_DEFAULT _Pragma("omp parallel for schedule(static)")
 #define OMP_PARALLEL_FOR_DYNAMIC _Pragma("omp parallel for schedule(dynamic, chunk)")
@@ -114,25 +120,34 @@ void calc_escape_time_parallel_scheduled(
         #pragma omp single
         used_threads = omp_get_num_threads();
 
+        double thread_start = omp_get_wtime();
         if (schedule_kind == PARALLEL_SCHEDULE_STATIC && chunk == 0) {
-            PROCESS_ROWS_WITH_STATS(OMP_FOR_STATIC_DEFAULT);
+            PROCESS_ROWS_WITH_STATS(OMP_FOR_STATIC_DEFAULT_NOWAIT);
         } else if (schedule_kind == PARALLEL_SCHEDULE_STATIC) {
-            PROCESS_ROWS_WITH_STATS(OMP_FOR_STATIC);
+            PROCESS_ROWS_WITH_STATS(OMP_FOR_STATIC_NOWAIT);
         } else if (schedule_kind == PARALLEL_SCHEDULE_DYNAMIC) {
-            PROCESS_ROWS_WITH_STATS(OMP_FOR_DYNAMIC);
+            PROCESS_ROWS_WITH_STATS(OMP_FOR_DYNAMIC_NOWAIT);
         } else {
-            PROCESS_ROWS_WITH_STATS(OMP_FOR_GUIDED);
+            PROCESS_ROWS_WITH_STATS(OMP_FOR_GUIDED_NOWAIT);
         }
+        thread_loads[thread_id].seconds = omp_get_wtime() - thread_start;
     }
 
     long long total_iterations = 0;
     long long max_thread_iterations = 0;
     long long min_thread_iterations = LLONG_MAX;
+    double total_thread_seconds = 0.0;
+    double min_thread_seconds = thread_loads[0].seconds;
+    double max_thread_seconds = thread_loads[0].seconds;
     for (int thread_id = 0; thread_id < used_threads; thread_id++) {
         long long load = thread_loads[thread_id].iterations;
+        double seconds = thread_loads[thread_id].seconds;
         total_iterations += load;
         if (load > max_thread_iterations) max_thread_iterations = load;
         if (load < min_thread_iterations) min_thread_iterations = load;
+        total_thread_seconds += seconds;
+        if (seconds > max_thread_seconds) max_thread_seconds = seconds;
+        if (seconds < min_thread_seconds) min_thread_seconds = seconds;
     }
 
     stats->requested_threads = omp_get_max_threads();
@@ -141,8 +156,11 @@ void calc_escape_time_parallel_scheduled(
     stats->max_thread_iterations = max_thread_iterations;
     stats->min_thread_iterations = min_thread_iterations;
     stats->avg_thread_iterations = (double)total_iterations / used_threads;
-    stats->load_balance_factor = max_thread_iterations /
-                                 stats->avg_thread_iterations;
+    stats->min_thread_seconds = min_thread_seconds;
+    stats->max_thread_seconds = max_thread_seconds;
+    stats->avg_thread_seconds = total_thread_seconds / used_threads;
+    stats->load_balance_factor = calculate_load_balance_factor(
+        min_thread_seconds, max_thread_seconds);
     free(thread_loads);
 }
 
